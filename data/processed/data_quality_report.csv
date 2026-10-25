@@ -1,0 +1,43 @@
+Table,Issue,Records,Action,Severity
+appointments,Appointment facility differs from the facility that owns the appointment's department,4744,"Flagged. Facility-level analysis uses the recorded Appointment.FacilityID; department-level analysis uses department TYPE (10 types, identical across facilities). Ranking sensitivity tested in 5.3",Critical
+billing,Bills whose AppointmentID is not in the Appointments table (orphans),55000,Retained in the 60k bill-level analysis; excluded from appointment-level modelling,Critical
+diagnoses,Diagnoses whose AppointmentID is not in Appointments,55000,Excluded from appointment-level analysis,Critical
+payments,Payment rows whose bill's appointment is missing,55000,As billing,Critical
+feedback,Feedback rows whose AppointmentID is not in Appointments,19308,Used only for hospital-wide rating distribution; facility/department satisfaction uses the linked rows,Critical
+ALL,"No Admissions, Length-of-Stay, Laboratory, Prescription or Referral tables",0,"Admission modelled through a labelled proxy (4.4); LOS, lab, prescription and referral analyses marked not computable",Critical
+patients,"Phone saved in scientific notation (e.g. 2.50788E+11) -> only 6 significant digits survive; only 10 distinct values in 20,000 rows",20000,Converted to text; Phone cannot identify duplicate patients or contact anyone - excluded from analysis,High
+patients,"Children under 12 with adult-range height/weight (height 140-190 cm, weight 40-120 kg recorded for all ages)",2594,Height/weight/BMI treated as unreliable for under-18s: BMI_clean set to missing for Age<18,High
+patients,Every patient (100%) has an InsuranceID (15 plans); there is no 'uninsured' category and no insurance master table,20000,Insurance coverage analysed through claims filed at billing level instead (see 4.2),High
+appointments,"Appointments dated AFTER the analysis date (24 Oct 2026) yet carrying diagnoses, bills and feedback",874,Flagged (future_dated); retained because they are indistinguishable from the rest of the 2026 series - results shown with and without them where it matters,High
+appointments,Doctor's home department differs from the appointment's department,4968,Flagged; doctor workload computed per DoctorID regardless of department,High
+billing,Bills marked 'Paid' whose payment is below the bill amount,4042,Billing.Status treated as unreliable; Outstanding recomputed as Amount - AmountPaid,High
+billing,Bills marked 'Pending'/'Partially Paid' that are fully paid,32010,As above,High
+feedback,"Rating contradicts the text comment (e.g. rating 1 with 'Excellent', rating 5 with 'Poor')",6336,Rating (numeric) used as the satisfaction measure; Comment ignored (Spearman rho Rating~Comment = 0.003),High
+revenue_summary,"Revenue_Summary does not reconcile with Billing (summary total 1.13bn RWF vs 9.31bn billed across 60,000 bills; 60,809 summary appointments vs 5,000 appointment records)",12,Treated as a separate management series; both are modelled and compared,High
+beds,"All 2,000 beds have Status = 'Available' (no occupied beds recorded)",2000,Bed occupancy/utilisation is NOT computable,High
+patients,ChronicCondition contains the text 'None' (no chronic condition) - default parsers read it as missing,5071,Kept as a valid category 'None' (loaded with keep_default_na=False),Medium
+patients,DateOfBirth stored as text 'm/d/yyyy' (and every DOB falls on 1 January),20000,Converted to datetime; day/month carry no information so only birth YEAR is reliable,Medium
+patients,Possible duplicate patients on name+sex+DOB (name pool = 12 first x 10 last names; DOB always 1 Jan),11925,Not treated as duplicates - identical by construction of a small name pool; PatientID is the only reliable key,Medium
+patients,Adult BMI outside 15-50 (extreme but arithmetically correct: BMI = weight/height^2 matches in 100% of rows),1471,Kept and flagged (BMI_extreme); weight/height appear independently random,Medium
+patients,Under-18s recorded as Married/Widowed,2631,Flagged (implausible_profile); MaritalStatus excluded from models,Medium
+patients,Education level impossible for age (e.g. Master's under 22),2647,Flagged; Education excluded from models,Medium
+patients,Skilled occupation recorded for children under 16,2607,Flagged; Occupation excluded from models,Medium
+patients,No registration date -> true patient-growth trend cannot be computed,20000,Proxy: cumulative unique patients by first appointment date,Medium
+districts/sectors/villages,"District, sector and village names are placeholders ('District 1', 'Sector 1', ...)",30,Province is the finest usable geographic level; no map geometry is possible,Medium
+payments,Payment method 'Insurance' but no insurance claim exists for the bill,4485,Flagged; claim presence (not payment method) defines insurance-backed bills,Medium
+equipment,No status/availability or usage field on equipment - availability and utilisation not computable,200,Only distribution analysed,Medium
+feedback/claims,Insurance claims have only Approved/Pending statuses (no Rejected); Billing has no payment dates,42036,Claim-rejection prediction and days-to-pay analysis not possible,Medium
+departments,HC_Departments and HC_Facility_Master_Data (Departments) are identical copies,200,Used one copy,Low
+patients,Gender is not consistent with first name (e.g. 'Patrick' recorded Female; every name is ~50/50 male/female),20000,Gender field used as recorded; names not used to infer sex,Low
+patients,Blood group AB- never occurs (7 of 8 ABO/Rh groups) and group frequencies are uniform (O+ is normally most common),20000,Used as recorded; flagged as a sign of simulated data,Low
+patients,Status = Active for 100% of patients (no variance),20000,Column dropped from modelling,Low
+ALL,True missing values (blank cells) across all 27 tables,0,None required,Info
+ALL,Fully duplicated rows,0,None found - nothing removed,Info
+ALL,"Duplicate primary keys (patients, appointments, diagnoses, billing, payments, claims, feedback, beds, rooms, staff)",0,None found - nothing removed,Info
+patients,Impossible/inconsistent ages (Age outside 0-110 or inconsistent with DOB),0,Age consistent with DOB for all patients - kept,Info
+patients,Possible duplicates on name+sex+DOB+village+blood group+height+weight,0,Stricter key finds none/very few - nothing removed,Info
+appointments,Unparseable dates,0,None - Date converted to datetime,Info
+appointments,Facility IDs not in HF001-HF020 / Department IDs not in master,0,None invalid,Info
+billing,Invalid billing amounts (<=0 or missing),0,"None invalid (range 10,002 - 299,998 RWF)",Info
+payments,Payments exceeding the billed amount,0,None,Info
+claims,Claims exceeding the billed amount,0,None (claims are 50-100% of the bill),Info

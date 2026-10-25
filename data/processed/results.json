@@ -1,0 +1,2822 @@
+{
+ "missing_tables": [
+  "Health Facilities (master)",
+  "Laboratory Tests",
+  "Prescriptions",
+  "Admissions",
+  "Referrals"
+ ],
+ "inventory": [
+  {
+   "table": "countries",
+   "rows": 1,
+   "columns": 6
+  },
+  {
+   "table": "provinces",
+   "rows": 5,
+   "columns": 3
+  },
+  {
+   "table": "districts",
+   "rows": 30,
+   "columns": 3
+  },
+  {
+   "table": "sectors",
+   "rows": 120,
+   "columns": 3
+  },
+  {
+   "table": "villages",
+   "rows": 480,
+   "columns": 3
+  },
+  {
+   "table": "ownership",
+   "rows": 4,
+   "columns": 2
+  },
+  {
+   "table": "departments",
+   "rows": 200,
+   "columns": 3
+  },
+  {
+   "table": "departments_master",
+   "rows": 200,
+   "columns": 3
+  },
+  {
+   "table": "specialties",
+   "rows": 200,
+   "columns": 3
+  },
+  {
+   "table": "services",
+   "rows": 400,
+   "columns": 3
+  },
+  {
+   "table": "equipment",
+   "rows": 200,
+   "columns": 4
+  },
+  {
+   "table": "rooms",
+   "rows": 400,
+   "columns": 4
+  },
+  {
+   "table": "beds",
+   "rows": 2000,
+   "columns": 3
+  },
+  {
+   "table": "doctors",
+   "rows": 350,
+   "columns": 10
+  },
+  {
+   "table": "nurses",
+   "rows": 700,
+   "columns": 10
+  },
+  {
+   "table": "pharmacists",
+   "rows": 50,
+   "columns": 10
+  },
+  {
+   "table": "lab_scientists",
+   "rows": 40,
+   "columns": 10
+  },
+  {
+   "table": "radiographers",
+   "rows": 30,
+   "columns": 10
+  },
+  {
+   "table": "admin_staff",
+   "rows": 80,
+   "columns": 10
+  },
+  {
+   "table": "patients",
+   "rows": 20000,
+   "columns": 19
+  },
+  {
+   "table": "appointments",
+   "rows": 5000,
+   "columns": 7
+  },
+  {
+   "table": "diagnoses",
+   "rows": 60000,
+   "columns": 4
+  },
+  {
+   "table": "billing",
+   "rows": 60000,
+   "columns": 4
+  },
+  {
+   "table": "claims",
+   "rows": 42036,
+   "columns": 5
+  },
+  {
+   "table": "payments",
+   "rows": 60000,
+   "columns": 4
+  },
+  {
+   "table": "feedback",
+   "rows": 21064,
+   "columns": 4
+  },
+  {
+   "table": "revenue_summary",
+   "rows": 12,
+   "columns": 3
+  }
+ ],
+ "fk_checks": [
+  {
+   "relationship": "provinces.CountryID -> countries.CountryID",
+   "child_rows": 5,
+   "valid": 5,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "districts.ProvinceID -> provinces.ProvinceID",
+   "child_rows": 30,
+   "valid": 30,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "sectors.DistrictID -> districts.DistrictID",
+   "child_rows": 120,
+   "valid": 120,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "villages.SectorID -> sectors.SectorID",
+   "child_rows": 480,
+   "valid": 480,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "patients.VillageID -> villages.VillageID",
+   "child_rows": 20000,
+   "valid": 20000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "departments.FacilityID -> facility set (inferred)",
+   "child_rows": 200,
+   "valid": 200,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "specialties.DepartmentID -> departments.DepartmentID",
+   "child_rows": 200,
+   "valid": 200,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "services.DepartmentID -> departments.DepartmentID",
+   "child_rows": 400,
+   "valid": 400,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "equipment.DepartmentID -> departments.DepartmentID",
+   "child_rows": 200,
+   "valid": 200,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "rooms.DepartmentID -> departments.DepartmentID",
+   "child_rows": 400,
+   "valid": 400,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "beds.RoomID -> rooms.RoomID",
+   "child_rows": 2000,
+   "valid": 2000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "doctors.DepartmentID -> departments.DepartmentID",
+   "child_rows": 350,
+   "valid": 350,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "nurses.DepartmentID -> departments.DepartmentID",
+   "child_rows": 700,
+   "valid": 700,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "pharmacists.DepartmentID -> departments.DepartmentID",
+   "child_rows": 50,
+   "valid": 50,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "lab_scientists.DepartmentID -> departments.DepartmentID",
+   "child_rows": 40,
+   "valid": 40,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "radiographers.DepartmentID -> departments.DepartmentID",
+   "child_rows": 30,
+   "valid": 30,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "admin_staff.DepartmentID -> departments.DepartmentID",
+   "child_rows": 80,
+   "valid": 80,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "appointments.PatientID -> patients.PatientID",
+   "child_rows": 5000,
+   "valid": 5000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "appointments.DoctorID -> doctors.StaffID",
+   "child_rows": 5000,
+   "valid": 5000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "appointments.DepartmentID -> departments.DepartmentID",
+   "child_rows": 5000,
+   "valid": 5000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "appointments.FacilityID -> facility set (inferred)",
+   "child_rows": 5000,
+   "valid": 5000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "diagnoses.AppointmentID -> appointments.AppointmentID",
+   "child_rows": 60000,
+   "valid": 5000,
+   "orphans": 55000,
+   "pct_valid": 8.33
+  },
+  {
+   "relationship": "billing.AppointmentID -> appointments.AppointmentID",
+   "child_rows": 60000,
+   "valid": 5000,
+   "orphans": 55000,
+   "pct_valid": 8.33
+  },
+  {
+   "relationship": "payments.BillingID -> billing.BillingID",
+   "child_rows": 60000,
+   "valid": 60000,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "claims.BillingID -> billing.BillingID",
+   "child_rows": 42036,
+   "valid": 42036,
+   "orphans": 0,
+   "pct_valid": 100.0
+  },
+  {
+   "relationship": "feedback.AppointmentID -> appointments.AppointmentID",
+   "child_rows": 21064,
+   "valid": 1756,
+   "orphans": 19308,
+   "pct_valid": 8.34
+  }
+ ],
+ "hierarchy_checks": [
+  {
+   "check": "Appointment.FacilityID == facility owning Appointment.DepartmentID",
+   "match_pct": 5.12
+  },
+  {
+   "check": "Appointment.FacilityID == Doctor home facility",
+   "match_pct": 5.14
+  },
+  {
+   "check": "Appointment.DepartmentID == Doctor home department",
+   "match_pct": 0.64
+  },
+  {
+   "check": "Rooms.FacilityID == facility owning Rooms.DepartmentID",
+   "match_pct": 100.0
+  },
+  {
+   "check": "Equipment.FacilityID == facility owning Equipment.DepartmentID",
+   "match_pct": 100.0
+  },
+  {
+   "check": "Staff.FacilityID == facility owning Staff.DepartmentID (doctors)",
+   "match_pct": 4.86
+  }
+ ],
+ "validation": [
+  {
+   "Check": "Foreign-key relationships",
+   "Result": "3 of 26 relationships have orphans",
+   "Detail": "All orphans sit in the transaction chain (Billing, Diagnoses, Payments, Feedback -> Appointments); reference tables are clean"
+  },
+  {
+   "Check": "Duplicate Patient IDs",
+   "Result": "0",
+   "Detail": "PatientID unique across 20,000 patients"
+  },
+  {
+   "Check": "Duplicate Appointment IDs",
+   "Result": "0",
+   "Detail": "AppointmentID unique across 5,000 appointments"
+  },
+  {
+   "Check": "Invalid Facility IDs (outside HF001-HF020)",
+   "Result": "0",
+   "Detail": "But facility on appointment disagrees with department's facility in 94.9% of rows"
+  },
+  {
+   "Check": "Invalid Department IDs",
+   "Result": "0",
+   "Detail": "All 200 department IDs valid"
+  },
+  {
+   "Check": "Impossible ages",
+   "Result": "0",
+   "Detail": "Ages 0-90; consistent with DOB. But 2594 children <12 have adult-range height/weight"
+  },
+  {
+   "Check": "Invalid billing amounts",
+   "Result": "0",
+   "Detail": "All amounts positive; payments and claims never exceed bills; but Status labels contradict payments"
+  }
+ ],
+ "dq_log": [
+  {
+   "Table": "appointments",
+   "Issue": "Appointment facility differs from the facility that owns the appointment's department",
+   "Records": 4744,
+   "Action": "Flagged. Facility-level analysis uses the recorded Appointment.FacilityID; department-level analysis uses department TYPE (10 types, identical across facilities). Ranking sensitivity tested in 5.3",
+   "Severity": "Critical"
+  },
+  {
+   "Table": "billing",
+   "Issue": "Bills whose AppointmentID is not in the Appointments table (orphans)",
+   "Records": 55000,
+   "Action": "Retained in the 60k bill-level analysis; excluded from appointment-level modelling",
+   "Severity": "Critical"
+  },
+  {
+   "Table": "diagnoses",
+   "Issue": "Diagnoses whose AppointmentID is not in Appointments",
+   "Records": 55000,
+   "Action": "Excluded from appointment-level analysis",
+   "Severity": "Critical"
+  },
+  {
+   "Table": "payments",
+   "Issue": "Payment rows whose bill's appointment is missing",
+   "Records": 55000,
+   "Action": "As billing",
+   "Severity": "Critical"
+  },
+  {
+   "Table": "feedback",
+   "Issue": "Feedback rows whose AppointmentID is not in Appointments",
+   "Records": 19308,
+   "Action": "Used only for hospital-wide rating distribution; facility/department satisfaction uses the linked rows",
+   "Severity": "Critical"
+  },
+  {
+   "Table": "ALL",
+   "Issue": "No Admissions, Length-of-Stay, Laboratory, Prescription or Referral tables",
+   "Records": 0,
+   "Action": "Admission modelled through a labelled proxy (4.4); LOS, lab, prescription and referral analyses marked not computable",
+   "Severity": "Critical"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Phone saved in scientific notation (e.g. 2.50788E+11) -> only 6 significant digits survive; only 10 distinct values in 20,000 rows",
+   "Records": 20000,
+   "Action": "Converted to text; Phone cannot identify duplicate patients or contact anyone - excluded from analysis",
+   "Severity": "High"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Children under 12 with adult-range height/weight (height 140-190 cm, weight 40-120 kg recorded for all ages)",
+   "Records": 2594,
+   "Action": "Height/weight/BMI treated as unreliable for under-18s: BMI_clean set to missing for Age<18",
+   "Severity": "High"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Every patient (100%) has an InsuranceID (15 plans); there is no 'uninsured' category and no insurance master table",
+   "Records": 20000,
+   "Action": "Insurance coverage analysed through claims filed at billing level instead (see 4.2)",
+   "Severity": "High"
+  },
+  {
+   "Table": "appointments",
+   "Issue": "Appointments dated AFTER the analysis date (24 Oct 2026) yet carrying diagnoses, bills and feedback",
+   "Records": 874,
+   "Action": "Flagged (future_dated); retained because they are indistinguishable from the rest of the 2026 series - results shown with and without them where it matters",
+   "Severity": "High"
+  },
+  {
+   "Table": "appointments",
+   "Issue": "Doctor's home department differs from the appointment's department",
+   "Records": 4968,
+   "Action": "Flagged; doctor workload computed per DoctorID regardless of department",
+   "Severity": "High"
+  },
+  {
+   "Table": "billing",
+   "Issue": "Bills marked 'Paid' whose payment is below the bill amount",
+   "Records": 4042,
+   "Action": "Billing.Status treated as unreliable; Outstanding recomputed as Amount - AmountPaid",
+   "Severity": "High"
+  },
+  {
+   "Table": "billing",
+   "Issue": "Bills marked 'Pending'/'Partially Paid' that are fully paid",
+   "Records": 32010,
+   "Action": "As above",
+   "Severity": "High"
+  },
+  {
+   "Table": "feedback",
+   "Issue": "Rating contradicts the text comment (e.g. rating 1 with 'Excellent', rating 5 with 'Poor')",
+   "Records": 6336,
+   "Action": "Rating (numeric) used as the satisfaction measure; Comment ignored (Spearman rho Rating~Comment = 0.003)",
+   "Severity": "High"
+  },
+  {
+   "Table": "revenue_summary",
+   "Issue": "Revenue_Summary does not reconcile with Billing (summary total 1.13bn RWF vs 9.31bn billed across 60,000 bills; 60,809 summary appointments vs 5,000 appointment records)",
+   "Records": 12,
+   "Action": "Treated as a separate management series; both are modelled and compared",
+   "Severity": "High"
+  },
+  {
+   "Table": "beds",
+   "Issue": "All 2,000 beds have Status = 'Available' (no occupied beds recorded)",
+   "Records": 2000,
+   "Action": "Bed occupancy/utilisation is NOT computable",
+   "Severity": "High"
+  },
+  {
+   "Table": "patients",
+   "Issue": "ChronicCondition contains the text 'None' (no chronic condition) - default parsers read it as missing",
+   "Records": 5071,
+   "Action": "Kept as a valid category 'None' (loaded with keep_default_na=False)",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "DateOfBirth stored as text 'm/d/yyyy' (and every DOB falls on 1 January)",
+   "Records": 20000,
+   "Action": "Converted to datetime; day/month carry no information so only birth YEAR is reliable",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Possible duplicate patients on name+sex+DOB (name pool = 12 first x 10 last names; DOB always 1 Jan)",
+   "Records": 11925,
+   "Action": "Not treated as duplicates - identical by construction of a small name pool; PatientID is the only reliable key",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Adult BMI outside 15-50 (extreme but arithmetically correct: BMI = weight/height^2 matches in 100% of rows)",
+   "Records": 1471,
+   "Action": "Kept and flagged (BMI_extreme); weight/height appear independently random",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Under-18s recorded as Married/Widowed",
+   "Records": 2631,
+   "Action": "Flagged (implausible_profile); MaritalStatus excluded from models",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Education level impossible for age (e.g. Master's under 22)",
+   "Records": 2647,
+   "Action": "Flagged; Education excluded from models",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Skilled occupation recorded for children under 16",
+   "Records": 2607,
+   "Action": "Flagged; Occupation excluded from models",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "patients",
+   "Issue": "No registration date -> true patient-growth trend cannot be computed",
+   "Records": 20000,
+   "Action": "Proxy: cumulative unique patients by first appointment date",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "districts/sectors/villages",
+   "Issue": "District, sector and village names are placeholders ('District 1', 'Sector 1', ...)",
+   "Records": 30,
+   "Action": "Province is the finest usable geographic level; no map geometry is possible",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "payments",
+   "Issue": "Payment method 'Insurance' but no insurance claim exists for the bill",
+   "Records": 4485,
+   "Action": "Flagged; claim presence (not payment method) defines insurance-backed bills",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "equipment",
+   "Issue": "No status/availability or usage field on equipment - availability and utilisation not computable",
+   "Records": 200,
+   "Action": "Only distribution analysed",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "feedback/claims",
+   "Issue": "Insurance claims have only Approved/Pending statuses (no Rejected); Billing has no payment dates",
+   "Records": 42036,
+   "Action": "Claim-rejection prediction and days-to-pay analysis not possible",
+   "Severity": "Medium"
+  },
+  {
+   "Table": "departments",
+   "Issue": "HC_Departments and HC_Facility_Master_Data (Departments) are identical copies",
+   "Records": 200,
+   "Action": "Used one copy",
+   "Severity": "Low"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Gender is not consistent with first name (e.g. 'Patrick' recorded Female; every name is ~50/50 male/female)",
+   "Records": 20000,
+   "Action": "Gender field used as recorded; names not used to infer sex",
+   "Severity": "Low"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Blood group AB- never occurs (7 of 8 ABO/Rh groups) and group frequencies are uniform (O+ is normally most common)",
+   "Records": 20000,
+   "Action": "Used as recorded; flagged as a sign of simulated data",
+   "Severity": "Low"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Status = Active for 100% of patients (no variance)",
+   "Records": 20000,
+   "Action": "Column dropped from modelling",
+   "Severity": "Low"
+  },
+  {
+   "Table": "ALL",
+   "Issue": "True missing values (blank cells) across all 27 tables",
+   "Records": 0,
+   "Action": "None required",
+   "Severity": "Info"
+  },
+  {
+   "Table": "ALL",
+   "Issue": "Fully duplicated rows",
+   "Records": 0,
+   "Action": "None found - nothing removed",
+   "Severity": "Info"
+  },
+  {
+   "Table": "ALL",
+   "Issue": "Duplicate primary keys (patients, appointments, diagnoses, billing, payments, claims, feedback, beds, rooms, staff)",
+   "Records": 0,
+   "Action": "None found - nothing removed",
+   "Severity": "Info"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Impossible/inconsistent ages (Age outside 0-110 or inconsistent with DOB)",
+   "Records": 0,
+   "Action": "Age consistent with DOB for all patients - kept",
+   "Severity": "Info"
+  },
+  {
+   "Table": "patients",
+   "Issue": "Possible duplicates on name+sex+DOB+village+blood group+height+weight",
+   "Records": 0,
+   "Action": "Stricter key finds none/very few - nothing removed",
+   "Severity": "Info"
+  },
+  {
+   "Table": "appointments",
+   "Issue": "Unparseable dates",
+   "Records": 0,
+   "Action": "None - Date converted to datetime",
+   "Severity": "Info"
+  },
+  {
+   "Table": "appointments",
+   "Issue": "Facility IDs not in HF001-HF020 / Department IDs not in master",
+   "Records": 0,
+   "Action": "None invalid",
+   "Severity": "Info"
+  },
+  {
+   "Table": "billing",
+   "Issue": "Invalid billing amounts (<=0 or missing)",
+   "Records": 0,
+   "Action": "None invalid (range 10,002 - 299,998 RWF)",
+   "Severity": "Info"
+  },
+  {
+   "Table": "payments",
+   "Issue": "Payments exceeding the billed amount",
+   "Records": 0,
+   "Action": "None",
+   "Severity": "Info"
+  },
+  {
+   "Table": "claims",
+   "Issue": "Claims exceeding the billed amount",
+   "Records": 0,
+   "Action": "None (claims are 50-100% of the bill)",
+   "Severity": "Info"
+  }
+ ],
+ "dq_counts": {
+  "Medium": 12,
+  "High": 10,
+  "Info": 10,
+  "Critical": 6,
+  "Low": 4
+ },
+ "features": [
+  {
+   "Required feature": "Patient Age Group",
+   "Column": "AgeGroup / AgeBand3",
+   "Definition": "Banded Age (9 bands; 3 broad bands)",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "High-Risk Patient Indicator",
+   "Column": "HighRiskPatient",
+   "Definition": "Age>=65 with a chronic condition, OR a chronic condition with any Severe diagnosis (rule-based, patient-level)",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Length of Stay Category",
+   "Column": "-",
+   "Definition": "Requires admission/discharge dates (table not supplied)",
+   "Status": "NOT COMPUTABLE"
+  },
+  {
+   "Required feature": "Frequent Visitor Indicator",
+   "Column": "FrequentVisitor",
+   "Definition": "Patient with 2+ appointments in the data",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Insurance Coverage Category",
+   "Column": "InsuranceCoverageCat",
+   "Definition": "Claim approved / Claim pending / Self-pay (no claim) - all patients hold an InsuranceID so claim presence is the usable signal",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Revenue Category",
+   "Column": "RevenueCategory",
+   "Definition": "Tertiles of the 60,000 bill amounts (Low/Medium/High)",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Disease Severity Score",
+   "Column": "SeverityScore",
+   "Definition": "Mild=1, Moderate=2, Severe=3",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Facility Performance Score",
+   "Column": "FacilityPerformanceScore",
+   "Definition": "50 + 10 x mean z-score of volume, mean rating, collection rate, claim approval rate",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Patient Satisfaction Category",
+   "Column": "SatisfactionCategory",
+   "Definition": "Rating 1-2 Low, 3 Medium, 4-5 High (1,756 appointments with feedback)",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "Department Workload Index",
+   "Column": "DeptWorkloadIndex",
+   "Definition": "Appointments per rostered clinical staff, scaled so the network mean = 100",
+   "Status": "Done"
+  },
+  {
+   "Required feature": "(extra) Prior visits, Month, Weekday, BMI_clean, High-acuity emergency proxy",
+   "Column": "PriorVisits, MonthNum, WeekdayNum, BMI_clean, HighAcuityEmergency",
+   "Definition": "Helper features for modelling",
+   "Status": "Done"
+  }
+ ],
+ "dataset_shape": [
+  5000,
+  70
+ ],
+ "patients": {
+  "total": 20000,
+  "active": 20000,
+  "seen": 4443,
+  "seen_pct": 0.22215,
+  "male": 10090,
+  "female": 9910,
+  "age_mean": 45.0332,
+  "age_median": 45.0,
+  "chronic_pct": 0.74645,
+  "chronic_counts": {
+   "None": 5071,
+   "Asthma": 4996,
+   "Hypertension": 4988,
+   "Diabetes": 4945
+  },
+  "under18": 0.1985,
+  "over65": 0.28505,
+  "high_risk_pct_seen": 0.3992797659239253,
+  "high_risk_n": 5028
+ },
+ "chronic_by_age": {
+  "0-4": 0.7349177330895795,
+  "5-14": 0.755382501145213,
+  "15-24": 0.7532879818594105,
+  "25-34": 0.7482931269913519,
+  "35-44": 0.7515837104072398,
+  "45-54": 0.7509968985378821,
+  "55-64": 0.7491871806781235,
+  "65-74": 0.744837081229922,
+  "75+": 0.7322544009085746
+ },
+ "child_chronic": {
+  "hypertension": 1005,
+  "diabetes": 984
+ },
+ "province": [
+  {
+   "ProvinceName": "Northern",
+   "Patients": 3923,
+   "Chronic": 0.7622,
+   "Age": 44.5802,
+   "Seen": 904
+  },
+  {
+   "ProvinceName": "Western",
+   "Patients": 4091,
+   "Chronic": 0.7348,
+   "Age": 45.0291,
+   "Seen": 930
+  },
+  {
+   "ProvinceName": "Kigali City",
+   "Patients": 3952,
+   "Chronic": 0.7437,
+   "Age": 45.4916,
+   "Seen": 850
+  },
+  {
+   "ProvinceName": "Eastern",
+   "Patients": 4067,
+   "Chronic": 0.7519,
+   "Age": 44.4256,
+   "Seen": 895
+  },
+  {
+   "ProvinceName": "Southern",
+   "Patients": 3967,
+   "Chronic": 0.7401,
+   "Age": 45.6516,
+   "Seen": 864
+  }
+ ],
+ "patient_growth": {
+  "slope": -8.653846153846155,
+  "p": 3.6839532413317736e-05,
+  "monthly_mean": 370.25,
+  "first_month": 416,
+  "last_month": 311
+ },
+ "clinical": {
+  "dx_counts": {
+   "Hypertension": 1059,
+   "Gastritis": 1017,
+   "Upper Respiratory Infection": 1004,
+   "Diabetes": 985,
+   "Malaria": 935
+  },
+  "severity": {
+   "Moderate": 1696,
+   "Mild": 1682,
+   "Severe": 1622
+  },
+  "visit_types": {
+   "Follow-Up": 1694,
+   "Consultation": 1656,
+   "Emergency": 1650
+  },
+  "emergency_share": 0.33,
+  "severe_share": 0.3244,
+  "high_acuity_share": 0.1088
+ },
+ "dx_trends": [
+  {
+   "Diagnosis": "Diabetes",
+   "slope_per_month": -0.3392,
+   "p": 0.615,
+   "p_holm": 1.0
+  },
+  {
+   "Diagnosis": "Gastritis",
+   "slope_per_month": -0.507,
+   "p": 0.4827,
+   "p_holm": 1.0
+  },
+  {
+   "Diagnosis": "Hypertension",
+   "slope_per_month": 0.3741,
+   "p": 0.7189,
+   "p_holm": 1.0
+  },
+  {
+   "Diagnosis": "Malaria",
+   "slope_per_month": -1.0664,
+   "p": 0.0986,
+   "p_holm": 0.4929
+  },
+  {
+   "Diagnosis": "Upper Respiratory Infection",
+   "slope_per_month": 0.7413,
+   "p": 0.3606,
+   "p_holm": 1.0
+  }
+ ],
+ "operations": {
+  "doctor_appts_mean": 14.285714285714286,
+  "doctor_appts_min": 5,
+  "doctor_appts_max": 28,
+  "doctor_appts_sd": 3.6827751197826197,
+  "fac_min": 217,
+  "fac_max": 278,
+  "fac_top": "HF013",
+  "fac_bottom": "HF019",
+  "fac_chi_p": 0.05210469470599673,
+  "dept_chi_p": 0.4900932429018441,
+  "fac_rank_rho_alt": -0.2822648744427556,
+  "fac_rank_p_alt": 0.22791173804127,
+  "doctors": 350,
+  "nurses": 700,
+  "pharmacists": 50,
+  "lab": 40,
+  "radiographers": 30,
+  "admin": 80,
+  "beds": 2000,
+  "rooms": 400,
+  "equipment": 200,
+  "patients_per_doctor": 57.142857142857146,
+  "patients_per_nurse": 28.571428571428573,
+  "exp_mean": 12.928
+ },
+ "staff_by_role": [
+  {
+   "Role": "Administrative Staff",
+   "count": 80,
+   "mean": 12.56
+  },
+  {
+   "Role": "Doctor",
+   "count": 350,
+   "mean": 13.02
+  },
+  {
+   "Role": "Laboratory Scientist",
+   "count": 40,
+   "mean": 10.55
+  },
+  {
+   "Role": "Nurse",
+   "count": 700,
+   "mean": 13.15
+  },
+  {
+   "Role": "Pharmacist",
+   "count": 50,
+   "mean": 13.26
+  },
+  {
+   "Role": "Radiographer",
+   "count": 30,
+   "mean": 10.33
+  }
+ ],
+ "dept_type": [
+  {
+   "DepartmentName": "Cardiology",
+   "Appointments": 544,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.65
+  },
+  {
+   "DepartmentName": "Radiology",
+   "Appointments": 525,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.487
+  },
+  {
+   "DepartmentName": "Obstetrics & Gynecology",
+   "Appointments": 511,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.368
+  },
+  {
+   "DepartmentName": "Laboratory",
+   "Appointments": 499,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.265
+  },
+  {
+   "DepartmentName": "Emergency",
+   "Appointments": 495,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.231
+  },
+  {
+   "DepartmentName": "Pediatrics",
+   "Appointments": 491,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.197
+  },
+  {
+   "DepartmentName": "Pharmacy",
+   "Appointments": 490,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.188
+  },
+  {
+   "DepartmentName": "Internal Medicine",
+   "Appointments": 490,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.188
+  },
+  {
+   "DepartmentName": "Surgery",
+   "Appointments": 488,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 4.171
+  },
+  {
+   "DepartmentName": "ICU",
+   "Appointments": 467,
+   "ClinicalStaff": 117,
+   "Doctors": 35,
+   "ApptPerStaff": 3.991
+  }
+ ],
+ "finance": {
+  "bills": 60000,
+  "billed": 9309401961.0,
+  "collected": 8389454556.0,
+  "outstanding": 919947405.0,
+  "collection_rate": 0.90118082677556,
+  "mean_bill": 155156.69935,
+  "median_bill": 155247.0,
+  "claim_share": 0.7006,
+  "claim_approved": 21008,
+  "claim_pending": 21028,
+  "claim_total_amt": 4881863293.879999,
+  "pending_claim_amt": 2438605768.02,
+  "approved_claim_amt": 2443257525.86,
+  "by_status": [
+   {
+    "Status": "Paid",
+    "n": 20145,
+    "billed": 3112433502,
+    "outstanding": 311240391,
+    "paid_ratio": 0.9
+   },
+   {
+    "Status": "Partially Paid",
+    "n": 19971,
+    "billed": 3093663563,
+    "outstanding": 305663893,
+    "paid_ratio": 0.901
+   },
+   {
+    "Status": "Pending",
+    "n": 19884,
+    "billed": 3103304896,
+    "outstanding": 303043121,
+    "paid_ratio": 0.902
+   }
+  ],
+  "method": {
+   "Card": 0.2524,
+   "Mobile Money": 0.2503,
+   "Insurance": 0.2491,
+   "Cash": 0.2482
+  },
+  "providers": [
+   {
+    "Provider": "MMI",
+    "claims": 10373,
+    "amount": 1213205794.1,
+    "approved": 5143
+   },
+   {
+    "Provider": "Private",
+    "claims": 10508,
+    "amount": 1217496359.42,
+    "approved": 5176
+   },
+   {
+    "Provider": "RSSB",
+    "claims": 10511,
+    "amount": 1214649237.67,
+    "approved": 5355
+   },
+   {
+    "Provider": "Radiant",
+    "claims": 10644,
+    "amount": 1236511902.69,
+    "approved": 5334
+   }
+  ],
+  "fully_paid_share": 0.8018833333333333,
+  "ks_uniform_p": 0.9205151707403395
+ },
+ "monthly": [
+  {
+   "Month": "2026-01",
+   "Appointments": 418,
+   "Billed": 63773527,
+   "Collected": 59049032,
+   "MeanRating": 3.06,
+   "RatingN": 134,
+   "SummaryRevenue": 89606847,
+   "SummaryAppointments": 6979,
+   "MonthlyGrowth": null
+  },
+  {
+   "Month": "2026-02",
+   "Appointments": 413,
+   "Billed": 64318044,
+   "Collected": 56746830,
+   "MeanRating": 2.875,
+   "RatingN": 144,
+   "SummaryRevenue": 89649048,
+   "SummaryAppointments": 5299,
+   "MonthlyGrowth": 0.009
+  },
+  {
+   "Month": "2026-03",
+   "Appointments": 440,
+   "Billed": 69166031,
+   "Collected": 61965928,
+   "MeanRating": 2.896,
+   "RatingN": 164,
+   "SummaryRevenue": 91548666,
+   "SummaryAppointments": 4491,
+   "MonthlyGrowth": 0.075
+  },
+  {
+   "Month": "2026-04",
+   "Appointments": 405,
+   "Billed": 63544090,
+   "Collected": 57838281,
+   "MeanRating": 2.939,
+   "RatingN": 132,
+   "SummaryRevenue": 76571605,
+   "SummaryAppointments": 3887,
+   "MonthlyGrowth": -0.081
+  },
+  {
+   "Month": "2026-05",
+   "Appointments": 400,
+   "Billed": 60802208,
+   "Collected": 54349946,
+   "MeanRating": 2.846,
+   "RatingN": 143,
+   "SummaryRevenue": 134086770,
+   "SummaryAppointments": 6913,
+   "MonthlyGrowth": -0.043
+  },
+  {
+   "Month": "2026-06",
+   "Appointments": 437,
+   "Billed": 70172522,
+   "Collected": 62858137,
+   "MeanRating": 2.987,
+   "RatingN": 156,
+   "SummaryRevenue": 78698417,
+   "SummaryAppointments": 3280,
+   "MonthlyGrowth": 0.154
+  },
+  {
+   "Month": "2026-07",
+   "Appointments": 416,
+   "Billed": 64575071,
+   "Collected": 58064921,
+   "MeanRating": 2.965,
+   "RatingN": 143,
+   "SummaryRevenue": 78952898,
+   "SummaryAppointments": 5623,
+   "MonthlyGrowth": -0.08
+  },
+  {
+   "Month": "2026-08",
+   "Appointments": 428,
+   "Billed": 69091082,
+   "Collected": 61789839,
+   "MeanRating": 2.917,
+   "RatingN": 145,
+   "SummaryRevenue": 69840511,
+   "SummaryAppointments": 3802,
+   "MonthlyGrowth": 0.07
+  },
+  {
+   "Month": "2026-09",
+   "Appointments": 408,
+   "Billed": 57248879,
+   "Collected": 51375999,
+   "MeanRating": 2.823,
+   "RatingN": 141,
+   "SummaryRevenue": 145759784,
+   "SummaryAppointments": 4538,
+   "MonthlyGrowth": -0.171
+  },
+  {
+   "Month": "2026-10",
+   "Appointments": 414,
+   "Billed": 63149141,
+   "Collected": 56315210,
+   "MeanRating": 3.048,
+   "RatingN": 165,
+   "SummaryRevenue": 89598290,
+   "SummaryAppointments": 6540,
+   "MonthlyGrowth": 0.103
+  },
+  {
+   "Month": "2026-11",
+   "Appointments": 420,
+   "Billed": 64514828,
+   "Collected": 59426154,
+   "MeanRating": 2.845,
+   "RatingN": 155,
+   "SummaryRevenue": 121678182,
+   "SummaryAppointments": 4663,
+   "MonthlyGrowth": 0.022
+  },
+  {
+   "Month": "2026-12",
+   "Appointments": 401,
+   "Billed": 60778016,
+   "Collected": 54771043,
+   "MeanRating": 2.896,
+   "RatingN": 134,
+   "SummaryRevenue": 66686482,
+   "SummaryAppointments": 4794,
+   "MonthlyGrowth": -0.058
+  }
+ ],
+ "experience": {
+  "all_n": 21064,
+  "all_mean": 2.9871819217622484,
+  "all_low_share": 0.40438663121914165,
+  "all_high_share": 0.3961260919103684,
+  "linked_n": 1756,
+  "linked_mean": 2.9253986332574033,
+  "rating_dist": {
+   "1": 4245,
+   "2": 4273,
+   "3": 4202,
+   "4": 4195,
+   "5": 4149
+  },
+  "comment_dist": {
+   "Good": 5379,
+   "Poor": 5283,
+   "Excellent": 5204,
+   "Average": 5198
+  },
+  "contradiction_share": 0.30079756931257123,
+  "rho_rating_comment": 0.002686196861250761,
+  "best_fac": "HF011",
+  "worst_fac": "HF020",
+  "best_fac_val": 3.1868131868131866,
+  "worst_fac_val": 2.7560975609756095,
+  "best_dept": "Emergency",
+  "worst_dept": "ICU",
+  "best_dept_val": 3.021505376344086,
+  "worst_dept_val": 2.761627906976744
+ },
+ "descriptive": [
+  {
+   "Variable": "Patient age (years)",
+   "n": 20000,
+   "Mean": 45.033,
+   "Median": 45.0,
+   "Mode": 90.0,
+   "StdDev": 26.261,
+   "Variance": 689.636,
+   "Min": 0.0,
+   "P5": 4.0,
+   "P10": 9.0,
+   "Q1": 22.0,
+   "Q3": 68.0,
+   "P90": 82.0,
+   "P95": 86.0,
+   "Max": 90.0,
+   "IQR": 46.0,
+   "Skew": 0.005,
+   "Kurtosis": -1.194
+  },
+  {
+   "Variable": "BMI (adults 18+)",
+   "n": 16030,
+   "Mean": 30.039,
+   "Median": 29.2,
+   "Mode": 32.0,
+   "StdDev": 10.423,
+   "Variance": 108.63,
+   "Min": 11.1,
+   "P5": 15.0,
+   "P10": 17.1,
+   "Q1": 21.7,
+   "Q3": 37.0,
+   "P90": 44.5,
+   "P95": 49.1,
+   "Max": 61.2,
+   "IQR": 15.3,
+   "Skew": 0.45,
+   "Kurtosis": -0.402
+  },
+  {
+   "Variable": "Bill amount (RWF)",
+   "n": 60000,
+   "Mean": 155156.699,
+   "Median": 155247.0,
+   "Mode": 36833.0,
+   "StdDev": 83840.368,
+   "Variance": 7029207256.6,
+   "Min": 10002.0,
+   "P5": 24717.85,
+   "P10": 38803.8,
+   "Q1": 82275.25,
+   "Q3": 227907.75,
+   "P90": 271134.2,
+   "P95": 285651.7,
+   "Max": 299998.0,
+   "IQR": 145632.5,
+   "Skew": -0.003,
+   "Kurtosis": -1.205
+  },
+  {
+   "Variable": "Amount paid (RWF)",
+   "n": 60000,
+   "Mean": 139824.243,
+   "Median": 129821.5,
+   "Mode": 129528.0,
+   "StdDev": 83370.19,
+   "Variance": 6950588556.409,
+   "Min": 5002.0,
+   "P5": 20555.95,
+   "P10": 32340.6,
+   "Q1": 68694.25,
+   "Q3": 210240.0,
+   "P90": 264198.6,
+   "P95": 282129.45,
+   "Max": 299998.0,
+   "IQR": 141545.75,
+   "Skew": 0.255,
+   "Kurtosis": -1.11
+  },
+  {
+   "Variable": "Outstanding per bill (RWF)",
+   "n": 60000,
+   "Mean": 15332.457,
+   "Median": 0.0,
+   "Mode": 0.0,
+   "StdDev": 36038.072,
+   "Variance": 1298742597.616,
+   "Min": 0.0,
+   "P5": 0.0,
+   "P10": 0.0,
+   "Q1": 0.0,
+   "Q3": 0.0,
+   "P90": 76387.4,
+   "P95": 113261.25,
+   "Max": 149991.0,
+   "IQR": 0.0,
+   "Skew": 2.334,
+   "Kurtosis": 4.195
+  },
+  {
+   "Variable": "Insurance claim amount (RWF)",
+   "n": 42036,
+   "Mean": 116135.296,
+   "Median": 111421.64,
+   "Mode": 42625.0,
+   "StdDev": 67812.486,
+   "Variance": 4598533237.176,
+   "Min": 5172.54,
+   "P5": 17900.125,
+   "P10": 28055.925,
+   "Q1": 59153.72,
+   "Q3": 165174.938,
+   "P90": 211879.405,
+   "P95": 236446.775,
+   "Max": 298532.88,
+   "IQR": 106021.218,
+   "Skew": 0.329,
+   "Kurtosis": -0.76
+  },
+  {
+   "Variable": "Satisfaction rating (1-5)",
+   "n": 21064,
+   "Mean": 2.987,
+   "Median": 3.0,
+   "Mode": 2.0,
+   "StdDev": 1.413,
+   "Variance": 1.996,
+   "Min": 1.0,
+   "P5": 1.0,
+   "P10": 1.0,
+   "Q1": 2.0,
+   "Q3": 4.0,
+   "P90": 5.0,
+   "P95": 5.0,
+   "Max": 5.0,
+   "IQR": 2.0,
+   "Skew": 0.013,
+   "Kurtosis": -1.298
+  },
+  {
+   "Variable": "Staff years of experience",
+   "n": 1250,
+   "Mean": 12.928,
+   "Median": 13.0,
+   "Mode": 3.0,
+   "StdDev": 7.173,
+   "Variance": 51.446,
+   "Min": 1.0,
+   "P5": 2.0,
+   "P10": 3.0,
+   "Q1": 6.0,
+   "Q3": 19.0,
+   "P90": 23.0,
+   "P95": 24.0,
+   "Max": 25.0,
+   "IQR": 13.0,
+   "Skew": 0.017,
+   "Kurtosis": -1.203
+  },
+  {
+   "Variable": "Appointments per doctor",
+   "n": 350,
+   "Mean": 14.286,
+   "Median": 14.0,
+   "Mode": 15.0,
+   "StdDev": 3.683,
+   "Variance": 13.563,
+   "Min": 5.0,
+   "P5": 9.0,
+   "P10": 10.0,
+   "Q1": 12.0,
+   "Q3": 16.0,
+   "P90": 19.0,
+   "P95": 21.0,
+   "Max": 28.0,
+   "IQR": 4.0,
+   "Skew": 0.373,
+   "Kurtosis": 0.411
+  },
+  {
+   "Variable": "Prior visits (per appointment)",
+   "n": 5000,
+   "Mean": 0.121,
+   "Median": 0.0,
+   "Mode": 0.0,
+   "StdDev": 0.358,
+   "Variance": 0.128,
+   "Min": 0.0,
+   "P5": 0.0,
+   "P10": 0.0,
+   "Q1": 0.0,
+   "Q3": 0.0,
+   "P90": 1.0,
+   "P95": 1.0,
+   "Max": 3.0,
+   "IQR": 0.0,
+   "Skew": 3.067,
+   "Kurtosis": 9.954
+  },
+  {
+   "Variable": "Severity score (1-3)",
+   "n": 5000,
+   "Mean": 1.988,
+   "Median": 2.0,
+   "Mode": 2.0,
+   "StdDev": 0.813,
+   "Variance": 0.661,
+   "Min": 1.0,
+   "P5": 1.0,
+   "P10": 1.0,
+   "Q1": 1.0,
+   "Q3": 3.0,
+   "P90": 3.0,
+   "P95": 3.0,
+   "Max": 3.0,
+   "IQR": 2.0,
+   "Skew": 0.022,
+   "Kurtosis": -1.486
+  }
+ ],
+ "correlations": [
+  {
+   "Relationship": "Age vs admission proxy (high-acuity emergency)",
+   "Method": "Spearman",
+   "n": 5000,
+   "Statistic": -0.0169,
+   "p_value": 0.232,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Age vs billing amount",
+   "Method": "Spearman",
+   "n": 5000,
+   "Statistic": -0.0028,
+   "p_value": 0.8424,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Diagnosis vs severity (substitute for 'diagnosis vs length of stay')",
+   "Method": "Cramer's V",
+   "n": 5000,
+   "Statistic": 0.0328,
+   "p_value": 0.2139,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Diagnosis vs billing amount",
+   "Method": "Kruskal-Wallis (H)",
+   "n": 5000,
+   "Statistic": 3.0184,
+   "p_value": 0.5548,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Department workload index vs mean satisfaction (10 department types)",
+   "Method": "Spearman",
+   "n": 10,
+   "Statistic": 0.3818,
+   "p_value": 0.2763,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Facility appointments per clinical staff vs mean satisfaction (20 facilities)",
+   "Method": "Spearman",
+   "n": 20,
+   "Statistic": 0.0278,
+   "p_value": 0.9073,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Revenue vs patient volume - management summary (12 months)",
+   "Method": "Spearman",
+   "n": 12,
+   "Statistic": 0.3287,
+   "p_value": 0.2969,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Billed revenue vs appointments - linked data (12 months)",
+   "Method": "Spearman",
+   "n": 12,
+   "Statistic": 0.8741,
+   "p_value": 0.0002,
+   "Significant (p<0.05)": true
+  },
+  {
+   "Relationship": "Billed revenue vs appointments by facility (20 facilities)",
+   "Method": "Spearman",
+   "n": 20,
+   "Statistic": 0.8608,
+   "p_value": 0.0,
+   "Significant (p<0.05)": true
+  },
+  {
+   "Relationship": "Insurance plan (15) vs visits per patient (utilisation)",
+   "Method": "Kruskal-Wallis (H)",
+   "n": 20000,
+   "Statistic": 10.9311,
+   "p_value": 0.6914,
+   "Significant (p<0.05)": false
+  },
+  {
+   "Relationship": "Coverage category (approved/pending/self-pay) vs satisfaction",
+   "Method": "Kruskal-Wallis (H)",
+   "n": 1756,
+   "Statistic": 1.4742,
+   "p_value": 0.4785,
+   "Significant (p<0.05)": false
+  }
+ ],
+ "heatmap": {
+  "max_nonstructural_pair": [
+   "PaidRatio",
+   "Rating"
+  ],
+  "max_nonstructural_rho": 0.055033850101464665,
+  "n_vars": 14
+ },
+ "hypothesis_tests": [
+  {
+   "Test": "1. Billing: insurance-backed vs self-pay bills",
+   "H0": "Bill amounts have the same distribution for insured and self-pay bills",
+   "H1": "Distributions differ",
+   "Method": "Mann-Whitney U (Welch t as check)",
+   "Statistic": 374803043.5,
+   "p_value": 0.15485,
+   "Effect": "mean diff -1,065 RWF (95% CI -2,531 to 401); AUC=0.496; Welch p=0.154",
+   "n": 60000,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "2. Satisfaction differs across the 20 facilities",
+   "H0": "Median rating is equal in all facilities",
+   "H1": "At least one facility differs",
+   "Method": "Kruskal-Wallis (ANOVA as check)",
+   "Statistic": 13.79987,
+   "p_value": 0.79523,
+   "Effect": "epsilon^2=0.0000; ANOVA p=0.785",
+   "n": 1756,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "3. Admission proxy rate differs between age groups",
+   "H0": "Proportion of high-acuity emergency visits is equal across age groups",
+   "H1": "Proportions differ",
+   "Method": "Chi-square test of independence",
+   "Statistic": 6.16317,
+   "p_value": 0.10394,
+   "Effect": "Cramer's V=0.035; rates <18: 10.5%, 18-39: 12.8%, 40-59: 10.8%, 60+: 9.9%",
+   "n": 5000,
+   "p_holm": 0.93542,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "4. Satisfaction differs across department types",
+   "H0": "Median rating is equal in all 10 department types",
+   "H1": "At least one department differs",
+   "Method": "Kruskal-Wallis",
+   "Statistic": 4.46727,
+   "p_value": 0.87806,
+   "Effect": "epsilon^2=0.0000",
+   "n": 1756,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "5. Chronic-condition prevalence differs by age group",
+   "H0": "Prevalence is the same in all 9 age groups",
+   "H1": "Prevalence differs",
+   "Method": "Chi-square test of independence",
+   "Statistic": 6.69273,
+   "p_value": 0.57012,
+   "Effect": "Cramer's V=0.018",
+   "n": 20000,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "6. Chronic-condition prevalence differs by sex",
+   "H0": "Prevalence is equal for males and females",
+   "H1": "Prevalence differs",
+   "Method": "Chi-square test of independence",
+   "Statistic": 0.20183,
+   "p_value": 0.65325,
+   "Effect": "male 74.8% vs female 74.5%",
+   "n": 20000,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "7. Chronic-condition prevalence differs by province",
+   "H0": "Prevalence is equal in all 5 provinces",
+   "H1": "Prevalence differs",
+   "Method": "Chi-square test of independence",
+   "Statistic": 9.70943,
+   "p_value": 0.04562,
+   "Effect": "Cramer's V=0.022",
+   "n": 20000,
+   "p_holm": 0.50179,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "8. Billing differs by diagnosis severity",
+   "H0": "Bill distribution is the same for Mild, Moderate and Severe",
+   "H1": "At least one differs",
+   "Method": "Kruskal-Wallis",
+   "Statistic": 1.86087,
+   "p_value": 0.39438,
+   "Effect": "epsilon^2=0.0000",
+   "n": 5000,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "9. Payment completeness differs by Billing.Status label",
+   "H0": "Share of the bill paid is the same for Paid / Partially Paid / Pending bills",
+   "H1": "Status labels differ in share paid",
+   "Method": "Kruskal-Wallis",
+   "Statistic": 0.88455,
+   "p_value": 0.64257,
+   "Effect": "mean paid share: Paid: 90.0%, Partially Paid: 90.1%, Pending: 90.2%",
+   "n": 60000,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "10. Appointment volume is uneven across facilities",
+   "H0": "Appointments are spread equally over the 20 facilities",
+   "H1": "Volume differs by facility",
+   "Method": "Chi-square goodness of fit",
+   "Statistic": 29.976,
+   "p_value": 0.0521,
+   "Effect": "range 217-278 (expected 250)",
+   "n": 5000,
+   "p_holm": 0.52105,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  },
+  {
+   "Test": "11. Appointment volume is uneven across department types",
+   "H0": "Appointments are spread equally over the 10 department types",
+   "H1": "Volume differs by department",
+   "Method": "Chi-square goodness of fit",
+   "Statistic": 8.444,
+   "p_value": 0.49009,
+   "Effect": "range 467-544 (expected 500)",
+   "n": 5000,
+   "p_holm": 1.0,
+   "Conclusion (alpha=0.05, Holm)": "Fail to reject H0"
+  }
+ ],
+ "forecasts": {
+  "Monthly appointments (Appointments table)": {
+   "label": "Monthly appointments (Appointments table)",
+   "best": "Mean",
+   "mae": {
+    "Mean": 7.35,
+    "Naive (last value)": 12.33,
+    "Linear trend": 8.63,
+    "Exp. smoothing (SES)": 7.35
+   },
+   "mape": {
+    "Mean": 0.0178,
+    "Naive (last value)": 0.0298,
+    "Linear trend": 0.0209,
+    "Exp. smoothing (SES)": 0.0178
+   },
+   "mae_vs_mean": 1.0,
+   "trend_slope": -0.7972027972027973,
+   "trend_p": 0.4892994327299656,
+   "cv": 0.031163615147971988,
+   "history_mean": 416.6666666666667,
+   "forecast_total": 5000.000000000001,
+   "forecast_mean": 416.66666666666674,
+   "forecast_lo_total": 4682.126033437493,
+   "forecast_hi_total": 5317.873966562507,
+   "pred": [
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667,
+    416.6666666666667
+   ],
+   "lo": [
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244,
+    390.1771694531244
+   ],
+   "hi": [
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896,
+    443.15616388020896
+   ]
+  },
+  "Monthly appointments (management summary)": {
+   "label": "Monthly appointments (management summary)",
+   "best": "Mean",
+   "mae": {
+    "Mean": 855.85,
+    "Naive (last value)": 1222.0,
+    "Linear trend": 1430.92,
+    "Exp. smoothing (SES)": 855.85
+   },
+   "mape": {
+    "Mean": 0.1714,
+    "Naive (last value)": 0.2368,
+    "Linear trend": 0.2648,
+    "Exp. smoothing (SES)": 0.1714
+   },
+   "mae_vs_mean": 1.0,
+   "trend_slope": -66.96153846153845,
+   "trend_p": 0.5407907017954001,
+   "cv": 0.24265139370274208,
+   "history_mean": 5067.416666666667,
+   "forecast_total": 60808.99999999999,
+   "forecast_mean": 5067.416666666666,
+   "forecast_lo_total": 30707.525058293544,
+   "forecast_hi_total": 90910.47494170644,
+   "pred": [
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667,
+    5067.416666666667
+   ],
+   "lo": [
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462,
+    2558.960421524462
+   ],
+   "hi": [
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872,
+    7575.872911808872
+   ]
+  },
+  "Monthly revenue (management summary, RWF)": {
+   "label": "Monthly revenue (management summary, RWF)",
+   "best": "Exp. smoothing (SES)",
+   "mae": {
+    "Mean": 26624127.71,
+    "Naive (last value)": 39130795.0,
+    "Linear trend": 30970070.85,
+    "Exp. smoothing (SES)": 25736039.19
+   },
+   "mape": {
+    "Mean": 0.2464,
+    "Naive (last value)": 0.373,
+    "Linear trend": 0.3025,
+    "Exp. smoothing (SES)": 0.2325
+   },
+   "mae_vs_mean": 0.9666434698854633,
+   "trend_slope": 615182.3706293707,
+   "trend_p": 0.7888807638593281,
+   "cv": 0.2711960059565991,
+   "history_mean": 94389791.66666667,
+   "forecast_total": 1093257877.6817765,
+   "forecast_mean": 91104823.14014804,
+   "forecast_lo_total": 491189750.043373,
+   "forecast_hi_total": 1695326005.3201795,
+   "pred": [
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804,
+    91104823.14014804
+   ],
+   "lo": [
+    40932479.17028112,
+    40932479.17028112,
+    40932479.170281105,
+    40932479.170281105,
+    40932479.1702811,
+    40932479.1702811,
+    40932479.17028108,
+    40932479.17028108,
+    40932479.170281075,
+    40932479.170281075,
+    40932479.17028106,
+    40932479.17028106
+   ],
+   "hi": [
+    141277167.11001498,
+    141277167.11001498,
+    141277167.11001498,
+    141277167.11001498,
+    141277167.11001498,
+    141277167.11001498,
+    141277167.110015,
+    141277167.110015,
+    141277167.110015,
+    141277167.110015,
+    141277167.11001503,
+    141277167.11001503
+   ]
+  },
+  "Monthly billed revenue (linked bills, RWF)": {
+   "label": "Monthly billed revenue (linked bills, RWF)",
+   "best": "Mean",
+   "mae": {
+    "Mean": 3697162.67,
+    "Naive (last value)": 5993867.75,
+    "Linear trend": 4463839.63,
+    "Exp. smoothing (SES)": 3635561.76
+   },
+   "mape": {
+    "Mean": 0.0611,
+    "Naive (last value)": 0.0983,
+    "Linear trend": 0.0741,
+    "Exp. smoothing (SES)": 0.0601
+   },
+   "mae_vs_mean": 1.0,
+   "trend_slope": -298967.40909090906,
+   "trend_p": 0.36987374777695303,
+   "cv": 0.05893114690920193,
+   "history_mean": 64261119.916666664,
+   "forecast_total": 771133438.9999999,
+   "forecast_mean": 64261119.91666666,
+   "forecast_lo_total": 678426646.8412848,
+   "forecast_hi_total": 863840231.158715,
+   "pred": [
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664,
+    64261119.916666664
+   ],
+   "lo": [
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404,
+    56535553.9034404
+   ],
+   "hi": [
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293,
+    71986685.92989293
+   ]
+  }
+ },
+ "poisson_dispersion_monthly_appts": 0.4046545454545455,
+ "dept_forecast": {
+  "best_model": "Mean",
+  "pooled_mae": {
+   "Mean": 4.755,
+   "Naive (last value)": 6.7,
+   "Linear trend": 6.973,
+   "Exp. smoothing (SES)": 4.946
+  },
+  "p90_threshold": 50.10000000000001,
+  "table": [
+   {
+    "Department": "Cardiology",
+    "Hist_monthly_mean": 45.3333,
+    "Forecast_monthly_mean": 45.3333,
+    "Lo": 32.0174,
+    "Hi": 58.6493,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.2415,
+    "Fcst_workload_index": 108.8
+   },
+   {
+    "Department": "Emergency",
+    "Hist_monthly_mean": 41.25,
+    "Forecast_monthly_mean": 41.25,
+    "Lo": 23.6552,
+    "Hi": 58.8448,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.1621,
+    "Fcst_workload_index": 99.0
+   },
+   {
+    "Department": "Laboratory",
+    "Hist_monthly_mean": 41.5833,
+    "Forecast_monthly_mean": 41.5833,
+    "Lo": 26.7838,
+    "Hi": 56.3829,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.1297,
+    "Fcst_workload_index": 99.8
+   },
+   {
+    "Department": "Pharmacy",
+    "Hist_monthly_mean": 40.8333,
+    "Forecast_monthly_mean": 40.8333,
+    "Lo": 26.3863,
+    "Hi": 55.2804,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.1043,
+    "Fcst_workload_index": 98.0
+   },
+   {
+    "Department": "Pediatrics",
+    "Hist_monthly_mean": 40.9167,
+    "Forecast_monthly_mean": 40.9167,
+    "Lo": 27.4559,
+    "Hi": 54.3775,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.0906,
+    "Fcst_workload_index": 98.2
+   },
+   {
+    "Department": "Radiology",
+    "Hist_monthly_mean": 43.75,
+    "Forecast_monthly_mean": 43.75,
+    "Lo": 34.8737,
+    "Hi": 52.6263,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.0804,
+    "Fcst_workload_index": 105.0
+   },
+   {
+    "Department": "Internal Medicine",
+    "Hist_monthly_mean": 40.8333,
+    "Forecast_monthly_mean": 40.8333,
+    "Lo": 28.2027,
+    "Hi": 53.464,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.0752,
+    "Fcst_workload_index": 98.0
+   },
+   {
+    "Department": "Surgery",
+    "Hist_monthly_mean": 40.6667,
+    "Forecast_monthly_mean": 40.6667,
+    "Lo": 28.4471,
+    "Hi": 52.8862,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.0651,
+    "Fcst_workload_index": 97.6
+   },
+   {
+    "Department": "Obstetrics & Gynecology",
+    "Hist_monthly_mean": 42.5833,
+    "Forecast_monthly_mean": 42.5833,
+    "Lo": 33.6504,
+    "Hi": 51.5163,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.0495,
+    "Fcst_workload_index": 102.2
+   },
+   {
+    "Department": "ICU",
+    "Hist_monthly_mean": 38.9167,
+    "Forecast_monthly_mean": 38.9167,
+    "Lo": 31.7721,
+    "Hi": 46.0612,
+    "Clinical_staff": 117,
+    "P_exceed_P90": 0.0011,
+    "Fcst_workload_index": 93.4
+   }
+  ]
+ },
+ "admission": {
+  "prevalence": 0.1088,
+  "n": 5000,
+  "positives": 544,
+  "table": [
+   {
+    "Model": "Baseline (prevalence)",
+    "AUC": 0.4992,
+    "AUC_lo": 0.5,
+    "AUC_hi": 0.5,
+    "PR_AUC": 0.1086,
+    "Accuracy": 0.1088,
+    "Precision": 0.1088,
+    "Recall": 1.0,
+    "F1": 0.1962,
+    "Threshold": 0.1088
+   },
+   {
+    "Model": "Logistic regression",
+    "AUC": 0.4945,
+    "AUC_lo": 0.4707,
+    "AUC_hi": 0.5193,
+    "PR_AUC": 0.1119,
+    "Accuracy": 0.2244,
+    "Precision": 0.112,
+    "Recall": 0.8842,
+    "F1": 0.1988,
+    "Threshold": 0.3946
+   },
+   {
+    "Model": "Random forest",
+    "AUC": 0.4963,
+    "AUC_lo": 0.4713,
+    "AUC_hi": 0.5237,
+    "PR_AUC": 0.1106,
+    "Accuracy": 0.111,
+    "Precision": 0.109,
+    "Recall": 1.0,
+    "F1": 0.1966,
+    "Threshold": 0.2949
+   },
+   {
+    "Model": "Gradient boosting",
+    "AUC": 0.5014,
+    "AUC_lo": 0.4767,
+    "AUC_hi": 0.527,
+    "PR_AUC": 0.1118,
+    "Accuracy": 0.1478,
+    "Precision": 0.1101,
+    "Recall": 0.9651,
+    "F1": 0.1977,
+    "Threshold": 0.0732
+   }
+  ],
+  "best": "Gradient boosting",
+  "best_auc": 0.501357224891752,
+  "best_ci": [
+   0.476663054820467,
+   0.5270141441392565
+  ],
+  "f1_all_positive": 0.19624819624819623,
+  "confusion": [
+   [
+    214,
+    4242
+   ],
+   [
+    19,
+    525
+   ]
+  ],
+  "perm_importance": [
+   {
+    "feature": "PriorVisits",
+    "mean": 0.0014,
+    "sd": 0.0011
+   },
+   {
+    "feature": "HasChronic",
+    "mean": -0.0001,
+    "sd": 0.0001
+   },
+   {
+    "feature": "ProvinceName",
+    "mean": -0.0002,
+    "sd": 0.007
+   },
+   {
+    "feature": "MonthNum",
+    "mean": -0.0015,
+    "sd": 0.0038
+   },
+   {
+    "feature": "WeekdayNum",
+    "mean": -0.0019,
+    "sd": 0.0047
+   },
+   {
+    "feature": "Gender",
+    "mean": -0.003,
+    "sd": 0.0021
+   },
+   {
+    "feature": "BMI_clean",
+    "mean": -0.0041,
+    "sd": 0.0074
+   },
+   {
+    "feature": "Age",
+    "mean": -0.0042,
+    "sd": 0.0116
+   },
+   {
+    "feature": "ChronicCondition",
+    "mean": -0.0061,
+    "sd": 0.0053
+   },
+   {
+    "feature": "DoctorYears",
+    "mean": -0.0065,
+    "sd": 0.0071
+   },
+   {
+    "feature": "Diagnosis",
+    "mean": -0.0097,
+    "sd": 0.0079
+   },
+   {
+    "feature": "DepartmentName",
+    "mean": -0.0134,
+    "sd": 0.0067
+   },
+   {
+    "feature": "FacilityID",
+    "mean": -0.0138,
+    "sd": 0.0158
+   },
+   {
+    "feature": "DeptWorkloadIndex",
+    "mean": -0.0177,
+    "sd": 0.0097
+   }
+  ]
+ },
+ "satisfaction_model": {
+  "n": 1756,
+  "class_dist": {
+   "Low (1-2)": 0.4095,
+   "High (4-5)": 0.3702,
+   "Medium (3)": 0.2204
+  },
+  "regression": [
+   {
+    "Model": "Baseline (mean rating)",
+    "R2": -0.0002,
+    "R2_fold_sd": 0.0006,
+    "MAE": 1.1747,
+    "RMSE": 1.3853
+   },
+   {
+    "Model": "Ridge regression",
+    "R2": -0.0252,
+    "R2_fold_sd": 0.0097,
+    "MAE": 1.1995,
+    "RMSE": 1.4025
+   },
+   {
+    "Model": "Random forest",
+    "R2": -0.0151,
+    "R2_fold_sd": 0.0063,
+    "MAE": 1.1902,
+    "RMSE": 1.3956
+   },
+   {
+    "Model": "Gradient boosting",
+    "R2": -0.0061,
+    "R2_fold_sd": 0.0079,
+    "MAE": 1.1833,
+    "RMSE": 1.3894
+   }
+  ],
+  "classification": [
+   {
+    "Model": "Baseline (majority class)",
+    "Accuracy": 0.4095,
+    "Balanced_accuracy": 0.3333,
+    "Macro_F1": 0.1937
+   },
+   {
+    "Model": "Logistic regression",
+    "Accuracy": 0.3781,
+    "Balanced_accuracy": 0.3267,
+    "Macro_F1": 0.3036
+   },
+   {
+    "Model": "Random forest",
+    "Accuracy": 0.4089,
+    "Balanced_accuracy": 0.3425,
+    "Macro_F1": 0.2898
+   }
+  ],
+  "best_clf": "Logistic regression",
+  "confusion": [
+   [
+    408,
+    32,
+    279
+   ],
+   [
+    202,
+    18,
+    167
+   ],
+   [
+    381,
+    31,
+    238
+   ]
+  ],
+  "labels": [
+   "Low (1-2)",
+   "Medium (3)",
+   "High (4-5)"
+  ],
+  "perm_importance": [
+   {
+    "feature": "PayMethod",
+    "mean": 0.0079,
+    "sd": 0.0044
+   },
+   {
+    "feature": "DeptWorkloadIndex",
+    "mean": 0.0069,
+    "sd": 0.0026
+   },
+   {
+    "feature": "BMI_clean",
+    "mean": 0.0045,
+    "sd": 0.0054
+   },
+   {
+    "feature": "DoctorYears",
+    "mean": 0.0018,
+    "sd": 0.0036
+   },
+   {
+    "feature": "PaidRatio",
+    "mean": 0.0012,
+    "sd": 0.0013
+   },
+   {
+    "feature": "Age",
+    "mean": 0.0012,
+    "sd": 0.0052
+   },
+   {
+    "feature": "VisitType",
+    "mean": 0.0011,
+    "sd": 0.0022
+   },
+   {
+    "feature": "DepartmentName",
+    "mean": 0.0005,
+    "sd": 0.001
+   },
+   {
+    "feature": "PriorVisits",
+    "mean": 0.0005,
+    "sd": 0.0005
+   },
+   {
+    "feature": "HasChronic",
+    "mean": -0.0003,
+    "sd": 0.0007
+   },
+   {
+    "feature": "ClaimStatusF",
+    "mean": -0.0003,
+    "sd": 0.0018
+   },
+   {
+    "feature": "FacilityID",
+    "mean": -0.0005,
+    "sd": 0.0017
+   },
+   {
+    "feature": "BillAmount",
+    "mean": -0.0007,
+    "sd": 0.0041
+   },
+   {
+    "feature": "Gender",
+    "mean": -0.0008,
+    "sd": 0.002
+   },
+   {
+    "feature": "BillStatus",
+    "mean": -0.0012,
+    "sd": 0.0019
+   },
+   {
+    "feature": "Diagnosis",
+    "mean": -0.0021,
+    "sd": 0.0023
+   },
+   {
+    "feature": "MonthNum",
+    "mean": -0.0022,
+    "sd": 0.0025
+   },
+   {
+    "feature": "SeverityScore",
+    "mean": -0.0023,
+    "sd": 0.0016
+   }
+  ]
+ },
+ "chronic_screen": {
+  "auc": 0.5156796729788864,
+  "ci": [
+   0.5066294561310017,
+   0.5255540526552606
+  ],
+  "bmi_chi_p": 0.9955103689287069,
+  "bmi_rates": {
+   "Underweight": 0.7466666666666667,
+   "Normal": 0.7451547584610935,
+   "Overweight": 0.7478680014831294,
+   "Obese": 0.7458614753012845
+  }
+ },
+ "clusters_patients": {
+  "k": 4,
+  "silhouette": 0.2205971769907942,
+  "null_mean": 0.1843478164788902,
+  "null_p95": 0.20367564858818007,
+  "stability_ari": 0.5473855334224452,
+  "sil_by_k": {
+   "2": 0.1904681356562789,
+   "3": 0.21914322558276228,
+   "4": 0.2205971769907942,
+   "5": 0.21894933427681068,
+   "6": 0.1736363997248302,
+   "7": 0.2045345075672435,
+   "8": 0.22356781493853964
+  },
+  "profile": [
+   {
+    "Cluster": 0,
+    "Age": 46.492,
+    "HasChronic": 0.769,
+    "Visits": 2.092,
+    "MeanBill": 154420.775,
+    "MeanSeverity": 1.967,
+    "ClaimShare": 0.7,
+    "EmergencyShare": 0.329,
+    "HighRisk": 0.539,
+    "Patients": 510,
+    "Profile": "High Visits / High HasChronic"
+   },
+   {
+    "Cluster": 1,
+    "Age": 45.758,
+    "HasChronic": 0.75,
+    "Visits": 1.0,
+    "MeanBill": 153635.579,
+    "MeanSeverity": 1.989,
+    "ClaimShare": 1.0,
+    "EmergencyShare": 0.0,
+    "HighRisk": 0.385,
+    "Patients": 1873,
+    "Profile": "Low EmergencyShare / High ClaimShare"
+   },
+   {
+    "Cluster": 2,
+    "Age": 45.021,
+    "HasChronic": 0.737,
+    "Visits": 1.0,
+    "MeanBill": 152897.711,
+    "MeanSeverity": 1.998,
+    "ClaimShare": 1.0,
+    "EmergencyShare": 1.0,
+    "HighRisk": 0.397,
+    "Patients": 902,
+    "Profile": "High EmergencyShare / High ClaimShare"
+   },
+   {
+    "Cluster": 3,
+    "Age": 45.087,
+    "HasChronic": 0.735,
+    "Visits": 1.0,
+    "MeanBill": 156006.022,
+    "MeanSeverity": 2.003,
+    "ClaimShare": 0.0,
+    "EmergencyShare": 0.344,
+    "HighRisk": 0.362,
+    "Patients": 1158,
+    "Profile": "Low ClaimShare / Low Visits"
+   }
+  ],
+  "n": 4443
+ },
+ "pca": {
+  "explained": [
+   0.1492724107291245,
+   0.14569418685573304,
+   0.1453298448487688,
+   0.14309888237569873,
+   0.14028551779251294,
+   0.1389547034655215,
+   0.13736445393264046
+  ],
+  "cumulative": [
+   0.1492724107291245,
+   0.29496659758485755,
+   0.4402964424336263,
+   0.5833953248093251,
+   0.7236808426018381,
+   0.8626355460673596,
+   1.0
+  ],
+  "n_for_80": 6,
+  "n_for_90": 7,
+  "loadings": {
+   "PC1": {
+    "Age": 0.542,
+    "HasChronic": 0.091,
+    "Visits": 0.341,
+    "MeanBill": -0.241,
+    "MeanSeverity": -0.443,
+    "ClaimShare": 0.369,
+    "EmergencyShare": -0.437
+   },
+   "PC2": {
+    "Age": -0.416,
+    "HasChronic": 0.691,
+    "Visits": -0.067,
+    "MeanBill": -0.361,
+    "MeanSeverity": 0.158,
+    "ClaimShare": 0.434,
+    "EmergencyShare": -0.018
+   }
+  }
+ },
+ "clusters_facilities": {
+  "k": 2,
+  "silhouette": 0.21264644376827616,
+  "null_mean": 0.1652429750431081,
+  "null_p95": 0.19373667549418488,
+  "stability_ari": 0.9198934240735465,
+  "profile": [
+   {
+    "Cluster": 0,
+    "Appointments": 238.545,
+    "MeanRating": 2.895,
+    "CollectionRate": 0.896,
+    "ClaimApprovalRate": 0.483,
+    "EmergencyShare": 0.309,
+    "SevereShare": 0.321,
+    "ClinicalStaff": 58.636,
+    "PerformanceScore": 45.558,
+    "Facilities": 11,
+    "Members": "002, 003, 005, 007, 008, 009, 015, 017, 018, 019, 020",
+    "Profile": "Low EmergencyShare / Low Appointments"
+   },
+   {
+    "Cluster": 1,
+    "Appointments": 264.0,
+    "MeanRating": 2.962,
+    "CollectionRate": 0.906,
+    "ClaimApprovalRate": 0.527,
+    "EmergencyShare": 0.353,
+    "SevereShare": 0.33,
+    "ClinicalStaff": 58.333,
+    "PerformanceScore": 55.429,
+    "Facilities": 9,
+    "Members": "001, 004, 006, 010, 011, 012, 013, 014, 016",
+    "Profile": "High EmergencyShare / High Appointments"
+   }
+  ]
+ },
+ "clusters_departments": {
+  "k": 6,
+  "silhouette": 0.16273006572239684,
+  "null_mean": 0.1702123220466951,
+  "null_p95": 0.1837863754902253,
+  "stability_ari": 0.38152576598988996,
+  "profile": [
+   {
+    "Cluster": 0,
+    "Appointments": 21.889,
+    "ClinicalStaff": 7.148,
+    "MeanBill": 143763.008,
+    "SevereShare": 0.204,
+    "EmergencyShare": 0.321,
+    "WorkloadIndex": 69.967,
+    "Departments": 27,
+    "Profile": "Low SevereShare / High ClinicalStaff"
+   },
+   {
+    "Cluster": 1,
+    "Appointments": 21.289,
+    "ClinicalStaff": 4.921,
+    "MeanBill": 144312.536,
+    "SevereShare": 0.374,
+    "EmergencyShare": 0.274,
+    "WorkloadIndex": 95.819,
+    "Departments": 38,
+    "Profile": "Low Appointments / Low MeanBill"
+   },
+   {
+    "Cluster": 2,
+    "Appointments": 26.974,
+    "ClinicalStaff": 4.923,
+    "MeanBill": 171959.036,
+    "SevereShare": 0.312,
+    "EmergencyShare": 0.27,
+    "WorkloadIndex": 123.048,
+    "Departments": 39,
+    "Profile": "High MeanBill / Low EmergencyShare"
+   },
+   {
+    "Cluster": 3,
+    "Appointments": 29.452,
+    "ClinicalStaff": 5.0,
+    "MeanBill": 145210.248,
+    "SevereShare": 0.283,
+    "EmergencyShare": 0.365,
+    "WorkloadIndex": 129.937,
+    "Departments": 42,
+    "Profile": "High Appointments / Low ClinicalStaff"
+   },
+   {
+    "Cluster": 4,
+    "Appointments": 25.778,
+    "ClinicalStaff": 8.667,
+    "MeanBill": 157121.001,
+    "SevereShare": 0.382,
+    "EmergencyShare": 0.33,
+    "WorkloadIndex": 65.101,
+    "Departments": 27,
+    "Profile": "High ClinicalStaff / High SevereShare"
+   },
+   {
+    "Cluster": 5,
+    "Appointments": 22.778,
+    "ClinicalStaff": 5.704,
+    "MeanBill": 161996.647,
+    "SevereShare": 0.413,
+    "EmergencyShare": 0.444,
+    "WorkloadIndex": 90.956,
+    "Departments": 27,
+    "Profile": "High EmergencyShare / High SevereShare"
+   }
+  ]
+ },
+ "recommendations": [
+  {
+   "Area": "Operational challenges",
+   "Evidence from the analysis": "The transaction chain is broken: only 5,000 of 60,000 bills, diagnoses and payments link to an appointment, and facility/doctor/department disagree on ~95% of appointments.",
+   "Recommendation": "Fix the data pipeline first: enforce appointment-ID foreign keys, derive facility from the department/doctor hierarchy, and add the missing admissions, lab, prescription, referral and facility-master tables before any further modelling.",
+   "Expected benefit": "Critical enabler for every other analysis",
+   "Confidence": "High"
+  },
+  {
+   "Area": "Operational challenges",
+   "Evidence from the analysis": "The brief's headline questions on admissions, length of stay, bed use and referrals cannot be answered: no admission data exist and all 2,000 beds are 'Available'.",
+   "Recommendation": "Record bed status in real time (occupied/cleaning/out of service) and capture admission and discharge timestamps.",
+   "Expected benefit": "Enables bed-utilisation and LOS models",
+   "Confidence": "High"
+  },
+  {
+   "Area": "High-risk patient groups",
+   "Evidence from the analysis": "75% of patients carry a chronic condition with no gradient by age, sex or province (tests 5-7, all non-significant after correction); 1,005 under-18s are recorded with hypertension. The rule-based flag marks 5,028 patients (25%) as high risk.",
+   "Recommendation": "Audit chronic-condition coding (especially for children). Until validated, use a universal chronic-care outreach for flagged high-risk patients (age 65+ with a chronic condition, or any chronic condition with a severe diagnosis) rather than age/sex/region targeting.",
+   "Expected benefit": "Reaches the 5,028 flagged patients; avoids mis-targeting",
+   "Confidence": "Medium"
+  },
+  {
+   "Area": "Patient satisfaction",
+   "Evidence from the analysis": "40% of all 21,064 ratings are 1-2. No facility or department differs significantly (tests 2 and 4), and no clinical, financial or operational variable predicts rating (R\u00b2 \u2264 0). Text comments contradict ratings in 30% of cases.",
+   "Recommendation": "Treat poor satisfaction as a network-wide service problem, not a site problem: run a network-wide patient-journey review (waiting, communication, billing). Link every survey to its appointment, and replace free-text comments with structured reason codes.",
+   "Expected benefit": "Targets the ~40% unhappy patients; makes future drivers measurable",
+   "Confidence": "Medium"
+  },
+  {
+   "Area": "Resource optimisation",
+   "Evidence from the analysis": "Doctor workload ranges 5-28 appointments (P90/P10 = 1.9x); facility load per clinical staff member differs by 32% (HF013 highest, HF004 lowest), while rosters are almost identical (57-60 staff). Facility volume gaps are marginal (p=0.052).",
+   "Recommendation": "Pilot a scheduling rule that balances doctor panels, and move 2-3 clinical staff from the lowest-load sites (HF004, HF005, HF007) to the highest-load sites (HF013, HF014, HF011); re-measure after one quarter before a permanent change.",
+   "Expected benefit": "Narrows a ~32% load gap at no extra headcount",
+   "Confidence": "Low-Medium"
+  },
+  {
+   "Area": "Revenue improvement",
+   "Evidence from the analysis": "0.92bn RWF (9.9% of billings) is unpaid across 11,887 underpaid bills, yet Billing.Status is unrelated to what was paid (test 9). 21,028 insurance claims (2.44bn RWF) are still pending, spread evenly over four insurers.",
+   "Recommendation": "Rebuild payment status from payment records (Amount - AmountPaid), start a collections list for the largest underpaid bills, and set a claim turnaround target for all four insurers (e.g. clear pending claims within 30 days).",
+   "Expected benefit": "Up to 0.92bn RWF of receivables and 2.44bn RWF of claims in play",
+   "Confidence": "High"
+  },
+  {
+   "Area": "Revenue improvement",
+   "Evidence from the analysis": "The management revenue summary (1.13bn RWF) does not reconcile with billing (9.31bn RWF) and swings 66M-146M a month independent of volume (rho = 0.33, p = 0.30).",
+   "Recommendation": "Reconcile finance reporting to the billing ledger monthly and explain the May, September and November spikes before using revenue forecasts for budgeting.",
+   "Expected benefit": "Reliable revenue baseline",
+   "Confidence": "High"
+  },
+  {
+   "Area": "Expanding services",
+   "Evidence from the analysis": "Demand is flat (no trend in monthly appointments, diagnoses or revenue; all p > 0.05) and no department, diagnosis or facility is growing. Cardiology (544) and Radiology (525) are the busiest department types but not significantly so.",
+   "Recommendation": "Do not commit capital to expansion on this evidence. Re-run the demand forecast once 24+ months of complete data exist, and use Cardiology and Radiology as the first capacity-review candidates.",
+   "Expected benefit": "Avoids unsupported capex",
+   "Confidence": "Medium"
+  }
+ ],
+ "figures": [
+  {
+   "file": "..\\figures\\fig01_patient_profile.png",
+   "title": "Patient profile of 20,000 registered patients",
+   "interpretation": "The register is almost perfectly balanced by sex (49.5% female) and spans all ages evenly (mean 45, no young-adult or elderly skew); the seven blood groups and 15 insurance plans are also near-uniform. Real populations are age-skewed and O+ is normally the most common blood group, while here only 7 of the 8 ABO/Rh groups appear (AB- is absent), which strongly suggests simulated data."
+  },
+  {
+   "file": "..\\figures\\fig02_chronic_by_age.png",
+   "title": "Chronic disease burden by age group",
+   "interpretation": "Prevalence is flat at ~75% in every age band (range 73-76%), and children carry the same burden as the elderly (1,005 under-18s are recorded with hypertension and 984 with diabetes). Biologically, chronic disease should rise sharply with age, so age cannot be used as a risk signal in this dataset."
+  },
+  {
+   "file": "..\\figures\\fig03_province_map.png",
+   "title": "Patients and chronic prevalence by province (schematic tile map)",
+   "interpretation": "Registered patients are spread evenly (3,923-4,091 per province) and chronic prevalence differs by under 2 points between provinces. A schematic tile map is used because district/sector/village names are placeholders and no boundary geometry exists, so a true geographic map is not possible."
+  },
+  {
+   "file": "..\\figures\\fig04_patient_growth.png",
+   "title": "Patient growth proxy (no registration date exists)",
+   "interpretation": "First-time patients fall from 416 in January to 311 in December (slope -8.7 a month, p<0.001). This is a counting artifact, not shrinking demand: as the year goes on more patients have already been seen, so fewer appointments can be a 'first' visit, while total appointments stay flat (~417 a month). 4,443 of 20,000 registered patients (22.2%) appear in the extract; true patient growth needs a registration date."
+  },
+  {
+   "file": "..\\figures\\fig05_clinical_mix.png",
+   "title": "Clinical mix: diagnoses, severity and visit type",
+   "interpretation": "The five diagnoses each account for 18-21% of appointments (top: Hypertension, 21.2%); severity is split roughly one-third each, and 33.0% of visits are emergencies. A mix this even is unusual for real clinical data: for example malaria, hypertension and diabetes should not be equally common."
+  },
+  {
+   "file": "..\\figures\\fig06_clinical_trends.png",
+   "title": "Which diseases are becoming more common?",
+   "interpretation": "Every diagnosis fluctuates around ~83 cases a month with no significant upward or downward trend (smallest Holm-adjusted p = 0.49), so no disease can be called 'increasing' on this evidence; month-to-month moves are noise."
+  },
+  {
+   "file": "..\\figures\\fig07_operations.png",
+   "title": "Operational workload: doctors, facilities and departments",
+   "interpretation": "Doctor load is roughly Poisson-like (5-28 appointments, mean 14.3); facility volume ranges 217-278 (HF013 busiest, HF019 quietest) but differs from an even split only marginally (chi-square p=0.052, not significant after multiple-test correction); department volumes are consistent with an even split (p=0.49). Staffing is almost identical across facilities (57-60 clinical staff), so busy sites are not staffed any differently."
+  },
+  {
+   "file": "..\\figures\\fig08_workload_index.png",
+   "title": "Which departments are likely to be overloaded?",
+   "interpretation": "At individual-department level the workload index varies widely (36-195) mainly because rostered staff per department ranges 4-9 while appointment counts are near-uniform; at department-type level the spread is narrow (4.0-4.6 appointments per staff member), led by Cardiology. Overload risk is therefore a staffing-allocation issue more than a demand issue."
+  },
+  {
+   "file": "..\\figures\\fig09_finance.png",
+   "title": "Financial overview of 60,000 bills",
+   "interpretation": "Bills are uniformly spread between 10k and 300k RWF (mean 155k). 80.2% of bills are fully paid and the rest are underpaid by 0-50%, leaving 0.92bn RWF (9.9% of billings) outstanding, and the shortfall is the same whether a bill is labelled Paid, Partially Paid or Pending, so the status label carries no information. 50.0% of insurance claims are still pending."
+  },
+  {
+   "file": "..\\figures\\fig10_revenue_trend.png",
+   "title": "Monthly revenue: two sources that do not agree",
+   "interpretation": "Billed revenue from linked appointments is stable (~64M RWF a month, range 57-70M), whereas the management summary swings from 67M to 146M with peaks in May, September and November. Summary revenue is unrelated to summary appointment counts (Spearman rho=0.33, p=0.30), so the swings are not volume-driven and need finance to explain them."
+  },
+  {
+   "file": "..\\figures\\fig12_satisfaction.png",
+   "title": "Patient satisfaction",
+   "interpretation": "Ratings are evenly spread across 1-5 (mean 2.99; 40.4% rate 1-2, 39.6% rate 4-5). Facility means (2.76-3.19) and department means (2.76-3.02) differ, but all confidence intervals overlap and the tests in section 6.3 show the gaps are within chance. 30.1% of responses have a text comment that contradicts the star rating."
+  },
+  {
+   "file": "..\\figures\\fig13_correlation_heatmap.png",
+   "title": "Correlation heatmap (Spearman, appointment level)",
+   "interpretation": "Apart from four structural pairs (visits count vs frequent-visitor flag; claim amount vs bill amount, as claims are 50-100% of the bill; severity vs the admission proxy that is built from it; prior visits vs month, which can only grow as the year progresses), no relationship is meaningful: the strongest remaining pair, PaidRatio vs Rating, has |rho| = 0.06. Age, chronic status, severity, billing and satisfaction are effectively independent in this dataset."
+  },
+  {
+   "file": "..\\figures\\fig14_distributions.png",
+   "title": "Distributions and relationships: violin, box, scatter and density",
+   "interpretation": "Bills have the same distribution at every severity level and visit type, age has the same distribution for every chronic condition, and the age-billing regression line is flat (Spearman rho=-0.003, p=0.84). In real data, sicker and older patients would cost more; here cost is unrelated to either."
+  },
+  {
+   "file": "..\\figures\\fig15_pair_plot.png",
+   "title": "Pair plot of key numeric variables (700-appointment sample)",
+   "interpretation": "No pair of variables shows a visible pattern or clustering by visit type; points fill each rectangle evenly. Discrete variables (severity score, prior visits) form horizontal and vertical bands only because they take few values."
+  },
+  {
+   "file": "..\\figures\\fig16_forecasts.png",
+   "title": "12-month forecasts: patient volume and revenue (Tasks 1 and 2)",
+   "interpretation": "Models were chosen by back-test, and none of the series has a significant trend (p = 0.37 to 0.79), so forecasts are flat at the 2026 average. The wide bands, especially for the management revenue summary (CV 27%), mean month-level revenue cannot be predicted reliably from 12 data points."
+  },
+  {
+   "file": "..\\figures\\fig17_dept_forecast.png",
+   "title": "Department workload forecast, 2027 (Task 5)",
+   "interpretation": "The Mean model (chosen by back-test) forecasts ~42 appointments per department per month in the extract. The chance of exceeding the network's busiest-10% month (dotted line, 50) runs from 0% (ICU) to 24% (Cardiology), but department volumes do not differ significantly (chi-square p=0.49), so this ranking is a watch-list (Cardiology and Emergency first), not evidence of overload."
+  },
+  {
+   "file": "..\\figures\\fig18_admission_model.png",
+   "title": "Admission-proxy prediction (Task 3)",
+   "interpretation": "The best model (Gradient boosting) reaches AUC 0.501 (95% CI 0.477-0.527); an AUC of 0.50 is a coin flip, and its F1 (0.20) is no better than flagging every appointment (0.20). Every permutation importance is within noise of zero, so none of the available factors predicts the proxy and no admission-risk tool can be built from these variables."
+  },
+  {
+   "file": "..\\figures\\fig19_satisfaction_model.png",
+   "title": "Patient satisfaction prediction (Task 4)",
+   "interpretation": "No model beats the mean-rating baseline (best R\u00b2 = -0.000; negative means worse than guessing the average), and the best classifier's accuracy (38%) is no better than always predicting the majority class (41%). With importances at zero, satisfaction cannot be explained by diagnosis, severity, cost, payment, department, facility or doctor experience in this data."
+  },
+  {
+   "file": "..\\figures\\fig20_patient_clusters_pca.png",
+   "title": "Patient segmentation (K-Means) and PCA",
+   "interpretation": "K-Means finds 4 segments (silhouette 0.22) but the shuffled-data null scores 0.18, so most of the apparent structure comes from a few discrete variables (visit count, claim filed or not, emergency or not) rather than natural groupings. PCA needs 6 of 7 components for 80% of the variance (first two: 29%), confirming the features are nearly uncorrelated and cannot be compressed meaningfully."
+  },
+  {
+   "file": "..\\figures\\fig21_facility_dept_clusters.png",
+   "title": "Facility and department segmentation",
+   "interpretation": "Facilities split into a busier group of 9 sites (mean 264 appointments, 35% emergency visits) and a quieter group of 11 (mean 239, 31%); silhouette 0.21 vs shuffled null 0.17, stability ARI 0.92. The split is modest and volume gaps are only marginally significant, so treat it as a planning aid. Department clustering (k=6) scores 0.16 against a null of 0.17 with stability ARI 0.38, so it is no better than random grouping and should not be used."
+  }
+ ]
+}
