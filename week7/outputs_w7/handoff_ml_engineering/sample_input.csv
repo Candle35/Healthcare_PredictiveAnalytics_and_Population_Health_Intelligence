@@ -1,0 +1,21 @@
+Age,PriorVisits,HasChronic,Gender,Diagnosis
+27,0,0,Female,Gastritis
+89,0,1,Female,Diabetes
+18,0,0,Female,Malaria
+3,0,1,Male,Gastritis
+35,0,1,Female,Malaria
+85,0,0,Male,Upper Respiratory Infection
+80,0,1,Male,Hypertension
+0,0,1,Male,Diabetes
+35,0,0,Female,Upper Respiratory Infection
+21,0,1,Female,Diabetes
+81,0,1,Female,Gastritis
+32,0,1,Female,Upper Respiratory Infection
+26,0,0,Male,Hypertension
+77,0,0,Male,Gastritis
+27,0,0,Male,Upper Respiratory Infection
+4,0,1,Female,Hypertension
+22,0,1,Male,Diabetes
+43,0,1,Female,Upper Respiratory Infection
+50,0,1,Male,Hypertension
+39,0,1,Male,Malaria

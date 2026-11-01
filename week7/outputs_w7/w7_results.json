@@ -1,0 +1,2628 @@
+{
+ "integrity": [
+  {
+   "Integrity check": "Row count = 5,000 appointments (Week 6)",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "AppointmentID unique",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "Target positives = 544 (10.88%, Week 6)",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "Target = Emergency AND Severe (rebuilt from raw columns)",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "No missing values in the target",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "Feature columns all present",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "Categorical labels in canonical Title case (cleaning applied)",
+   "Pass": "PASS"
+  },
+  {
+   "Integrity check": "PriorVisits equals number of earlier visits by the same patient",
+   "Pass": "PASS"
+  }
+ ],
+ "criteria": [
+  {
+   "ID": "AC1",
+   "Type": "S",
+   "Criterion": "Reproducibility",
+   "Pass rule": "Re-running the Week 6 protocol reproduces the reported AUC (0.505) within +/-0.005"
+  },
+  {
+   "ID": "AC2",
+   "Type": "M",
+   "Criterion": "Discrimination on locked test set",
+   "Pass rule": "Hold-out AUC >= 0.60 and the lower 95% bootstrap bound > 0.50"
+  },
+  {
+   "ID": "AC3",
+   "Type": "M",
+   "Criterion": "Operational value",
+   "Pass rule": "Precision in the top-20% highest-scored appointments (lift) >= 1.30 x prevalence, lower bound of lift > 1.0"
+  },
+  {
+   "ID": "AC4",
+   "Type": "S",
+   "Criterion": "Stability",
+   "Pass rule": "At least 90% of 10 repeated grouped-CV runs have AUC > 0.55"
+  },
+  {
+   "ID": "AC5",
+   "Type": "M",
+   "Criterion": "Signal vs chance",
+   "Pass rule": "Label-permutation test p < 0.05"
+  },
+  {
+   "ID": "AC6",
+   "Type": "S",
+   "Criterion": "Calibration",
+   "Pass rule": "Calibration slope within 0.8-1.2 and Brier score better than the prevalence-only forecast"
+  },
+  {
+   "ID": "AC7",
+   "Type": "S",
+   "Criterion": "Over-fitting",
+   "Pass rule": "Train-minus-validation AUC gap <= 0.05"
+  },
+  {
+   "ID": "AC8",
+   "Type": "S",
+   "Criterion": "Time-based validity",
+   "Pass rule": "AUC >= 0.55 when trained on Jan-Aug and tested on Sep-Dec"
+  },
+  {
+   "ID": "AC9",
+   "Type": "M",
+   "Criterion": "Meaningful improvement over baseline",
+   "Pass rule": "Paired-bootstrap delta-AUC vs baseline >= 0.05 with the 95% lower bound > 0"
+  },
+  {
+   "ID": "AC10",
+   "Type": "S",
+   "Criterion": "Segment parity",
+   "Pass rule": "Recall and flag-rate gap between sex, age-band and province groups <= 10 percentage points (groups with n >= 100)"
+  }
+ ],
+ "t1": {
+  "table": [
+   {
+    "Quantity": "Baseline (prevalence) AUC",
+    "Week 6 reported": 0.5,
+    "Week 7 re-run": 0.4992,
+    "Abs. difference": 0.0008,
+    "Result": "PASS"
+   },
+   {
+    "Quantity": "Logistic regression AUC",
+    "Week 6 reported": 0.494,
+    "Week 7 re-run": 0.4945,
+    "Abs. difference": 0.0005,
+    "Result": "PASS"
+   },
+   {
+    "Quantity": "Gradient boosting AUC",
+    "Week 6 reported": 0.505,
+    "Week 7 re-run": 0.5014,
+    "Abs. difference": 0.0036,
+    "Result": "PASS"
+   }
+  ],
+  "confusion": [
+   [
+    214,
+    4242
+   ],
+   [
+    19,
+    525
+   ]
+  ],
+  "threshold": 0.07323916876121439,
+  "auc_gb": 0.501357224891752,
+  "auc_lr": 0.49454923632379344,
+  "cm_match": false
+ },
+ "t2": {
+  "Baseline (prevalence)": {
+   "Model": "Baseline (prevalence)",
+   "AUC": 0.5,
+   "AUC_train": 0.5,
+   "PR_AUC": 0.10810810810810811,
+   "Brier": 0.09642149268677278,
+   "AUC_lo": 0.5,
+   "AUC_hi": 0.5,
+   "F1thr_Threshold": 0.10875,
+   "F1thr_FlagRate": 1.0,
+   "F1thr_Precision": 0.10810810810810811,
+   "F1thr_Recall": 1.0,
+   "F1thr_Specificity": 0.0,
+   "F1thr_F1": 0.1951219512195122,
+   "F1thr_BalancedAcc": 0.5,
+   "F1thr_MCC": 0.0,
+   "F1thr_Lift": 1.0,
+   "F1thr_TP": 108.0,
+   "F1thr_FP": 891.0,
+   "F1thr_FN": 0.0,
+   "F1thr_TN": 0.0,
+   "Top20_Threshold": 0.10902842861605748,
+   "Top20_FlagRate": 0.0,
+   "Top20_Precision": 0.0,
+   "Top20_Recall": 0.0,
+   "Top20_Specificity": 1.0,
+   "Top20_F1": 0.0,
+   "Top20_BalancedAcc": 0.5,
+   "Top20_MCC": 0.0,
+   "Top20_Lift": 0.0,
+   "Top20_TP": 0.0,
+   "Top20_FP": 0.0,
+   "Top20_FN": 108.0,
+   "Top20_TN": 891.0,
+   "Lift_lo": 0.0,
+   "Lift_hi": 0.0
+  },
+  "Logistic regression (Week 6)": {
+   "Model": "Logistic regression (Week 6)",
+   "AUC": 0.4778754624433637,
+   "AUC_train": 0.590514945250074,
+   "PR_AUC": 0.10194386873446828,
+   "Brier": 0.25389343958067234,
+   "AUC_lo": 0.4204246982515349,
+   "AUC_hi": 0.5317471441528422,
+   "F1thr_Threshold": 0.3946418163367018,
+   "F1thr_FlagRate": 0.8648648648648649,
+   "F1thr_Precision": 0.10648148148148148,
+   "F1thr_Recall": 0.8518518518518519,
+   "F1thr_Specificity": 0.1335578002244669,
+   "F1thr_F1": 0.18930041152263374,
+   "F1thr_BalancedAcc": 0.49270482603815935,
+   "F1thr_MCC": -0.013252341617261748,
+   "F1thr_Lift": 0.9849537037037036,
+   "F1thr_TP": 92.0,
+   "F1thr_FP": 772.0,
+   "F1thr_FN": 16.0,
+   "F1thr_TN": 119.0,
+   "Top20_Threshold": 0.5651825137757044,
+   "Top20_FlagRate": 0.20520520520520522,
+   "Top20_Precision": 0.07804878048780488,
+   "Top20_Recall": 0.14814814814814814,
+   "Top20_Specificity": 0.7878787878787878,
+   "Top20_F1": 0.10223642172523961,
+   "Top20_BalancedAcc": 0.468013468013468,
+   "Top20_MCC": -0.04918817388679431,
+   "Top20_Lift": 0.7219512195121951,
+   "Top20_TP": 16.0,
+   "Top20_FP": 189.0,
+   "Top20_FN": 92.0,
+   "Top20_TN": 702.0,
+   "Lift_lo": 0.43224465333274753,
+   "Lift_hi": 1.0334715365937084
+  },
+  "Gradient boosting (Week 6 candidate)": {
+   "Model": "Gradient boosting (Week 6 candidate)",
+   "AUC": 0.4793563204057031,
+   "AUC_train": 0.7438095912091305,
+   "PR_AUC": 0.10271082440553375,
+   "Brier": 0.09771564863907764,
+   "AUC_lo": 0.42444910729921825,
+   "AUC_hi": 0.5338383170228813,
+   "F1thr_Threshold": 0.09232239666309774,
+   "F1thr_FlagRate": 0.7407407407407407,
+   "F1thr_Precision": 0.10405405405405406,
+   "F1thr_Recall": 0.7129629629629629,
+   "F1thr_Specificity": 0.2558922558922559,
+   "F1thr_F1": 0.18160377358490565,
+   "F1thr_BalancedAcc": 0.48442760942760943,
+   "F1thr_MCC": -0.02206837073761874,
+   "F1thr_Lift": 0.9625,
+   "F1thr_TP": 77.0,
+   "F1thr_FP": 663.0,
+   "F1thr_FN": 31.0,
+   "F1thr_TN": 228.0,
+   "Top20_Threshold": 0.12592244064247074,
+   "Top20_FlagRate": 0.1781781781781782,
+   "Top20_Precision": 0.07865168539325842,
+   "Top20_Recall": 0.12962962962962962,
+   "Top20_Specificity": 0.8159371492704826,
+   "Top20_F1": 0.0979020979020979,
+   "Top20_BalancedAcc": 0.4727833894500561,
+   "Top20_MCC": -0.04417058840448518,
+   "Top20_Lift": 0.7275280898876404,
+   "Top20_TP": 14.0,
+   "Top20_FP": 164.0,
+   "Top20_FN": 94.0,
+   "Top20_TN": 727.0,
+   "Lift_lo": 0.40813670791077983,
+   "Lift_hi": 1.0924491753067374
+  }
+ },
+ "split": {
+  "train": 4001,
+  "test": 999,
+  "test_pos": 108,
+  "train_pos": 436
+ },
+ "t3": {
+  "table": [
+   {
+    "index": "GB",
+    "mean": 0.5042,
+    "sd": 0.0103,
+    "min": 0.4905,
+    "max": 0.5154,
+    "share of runs AUC>0.55": 0.0
+   },
+   {
+    "index": "LR",
+    "mean": 0.4906,
+    "sd": 0.0061,
+    "min": 0.4808,
+    "max": 0.5013,
+    "share of runs AUC>0.55": 0.0
+   }
+  ],
+  "runs": [
+   {
+    "run": 1,
+    "GB": 0.4977,
+    "LR": 0.4867
+   },
+   {
+    "run": 2,
+    "GB": 0.5102,
+    "LR": 0.4913
+   },
+   {
+    "run": 3,
+    "GB": 0.5057,
+    "LR": 0.5013
+   },
+   {
+    "run": 4,
+    "GB": 0.5087,
+    "LR": 0.4808
+   },
+   {
+    "run": 5,
+    "GB": 0.4905,
+    "LR": 0.4919
+   },
+   {
+    "run": 6,
+    "GB": 0.5154,
+    "LR": 0.4903
+   },
+   {
+    "run": 7,
+    "GB": 0.4909,
+    "LR": 0.4851
+   },
+   {
+    "run": 8,
+    "GB": 0.5151,
+    "LR": 0.496
+   },
+   {
+    "run": 9,
+    "GB": 0.5153,
+    "LR": 0.4958
+   },
+   {
+    "run": 10,
+    "GB": 0.4929,
+    "LR": 0.4866
+   }
+  ]
+ },
+ "t4": {
+  "observed": 0.501357224891752,
+  "null_mean": 0.5009339914292691,
+  "null_sd": 0.016735903264336154,
+  "null_p95": 0.5239061344914986,
+  "null_max": 0.547157995828493,
+  "p": 0.5148514851485149,
+  "n_perm": 100
+ },
+ "t5": {
+  "train_auc": 0.7465900668950014,
+  "val_auc": 0.5024910151072051,
+  "gap": 0.24409905178779634,
+  "val_sd": 0.017719283631296517,
+  "fold_val": [
+   0.5093008272020617,
+   0.5163459261318588,
+   0.4923170280166207,
+   0.4730279348016351,
+   0.5214633593838487
+  ],
+  "lr_train_auc": 0.5912260753356581,
+  "lr_val_auc": 0.49613398037999606
+ },
+ "t7": {
+  "intercept": -1.963328483483834,
+  "slope": 0.06535624274345792,
+  "slope_lo": -0.2842404937080333,
+  "slope_hi": 0.4149529791949491,
+  "brier": 0.0975334363097611,
+  "brier_prev": 0.09696256,
+  "ece": 0.021139987840557588,
+  "range_pred": [
+   0.03968833030696908,
+   0.2848918202623732
+  ]
+ },
+ "t8": [
+  {
+   "Policy": "Flag every appointment",
+   "FlagRate": 1.0,
+   "Precision": 0.1088,
+   "Recall": 1.0,
+   "F1": 0.1962,
+   "Lift": 1.0,
+   "Specificity": 0.0
+  },
+  {
+   "Policy": "Week 6: F1-maximising threshold",
+   "FlagRate": 0.9534,
+   "Precision": 0.1101,
+   "Recall": 0.9651,
+   "F1": 0.1977,
+   "Lift": 1.0122,
+   "Specificity": 0.048
+  },
+  {
+   "Policy": "Flag top 10% by score",
+   "FlagRate": 0.1,
+   "Precision": 0.124,
+   "Recall": 0.114,
+   "F1": 0.1188,
+   "Lift": 1.1397,
+   "Specificity": 0.9017
+  },
+  {
+   "Policy": "Flag top 20% by score",
+   "FlagRate": 0.2,
+   "Precision": 0.117,
+   "Recall": 0.2151,
+   "F1": 0.1516,
+   "Lift": 1.0754,
+   "Specificity": 0.8018
+  },
+  {
+   "Policy": "Flag top 30% by score",
+   "FlagRate": 0.3,
+   "Precision": 0.116,
+   "Recall": 0.3199,
+   "F1": 0.1703,
+   "Lift": 1.0662,
+   "Specificity": 0.7024
+  }
+ ],
+ "t9": {
+  "cm20": [
+   [
+    3573,
+    883
+   ],
+   [
+    427,
+    117
+   ]
+  ],
+  "n_fp": 883,
+  "n_fn": 427,
+  "min_p_holm_fp": 1.2808995527077062e-40,
+  "min_p_holm_fn": 1.5104590672608618e-06,
+  "top_fp": [
+   {
+    "Feature": "FacilityID",
+    "Effect": 0.2358,
+    "EffectType": "Cramer's V",
+    "p": 0.0,
+    "p_holm": 0.0
+   },
+   {
+    "Feature": "BMI_clean",
+    "Effect": -0.3079,
+    "EffectType": "std. mean diff",
+    "p": 0.0,
+    "p_holm": 0.0
+   },
+   {
+    "Feature": "Age",
+    "Effect": -0.2685,
+    "EffectType": "std. mean diff",
+    "p": 0.0,
+    "p_holm": 0.0
+   }
+  ],
+  "top_fn": [
+   {
+    "Feature": "FacilityID",
+    "Effect": 0.3576,
+    "EffectType": "Cramer's V",
+    "p": 0.0,
+    "p_holm": 0.0
+   },
+   {
+    "Feature": "BMI_clean",
+    "Effect": 0.2572,
+    "EffectType": "std. mean diff",
+    "p": 0.0098,
+    "p_holm": 0.1275
+   },
+   {
+    "Feature": "DoctorYears",
+    "Effect": 0.2439,
+    "EffectType": "std. mean diff",
+    "p": 0.0178,
+    "p_holm": 0.2139
+   }
+  ],
+  "max_abs_effect_fp": 0.307882338781656,
+  "max_abs_effect_fn": 0.3576446211764907,
+  "pos_rate_flagged": 0.117,
+  "pos_rate_unflagged": 0.10675,
+  "top_fp_features": [
+   "FacilityID",
+   "BMI_clean",
+   "Age"
+  ]
+ },
+ "t10": {
+  "parity": {
+   "Gender": {
+    "recall_gap": 0.010004326195111407,
+    "flag_gap": 0.004961334400500339,
+    "p_flag_equal": 0.6868709247511895
+   },
+   "AgeBand4": {
+    "recall_gap": 0.19884195288853795,
+    "flag_gap": 0.22080184222957017,
+    "p_flag_equal": 1.1903089267600103e-52
+   },
+   "ProvinceName": {
+    "recall_gap": 0.06052631578947368,
+    "flag_gap": 0.08826184000292722,
+    "p_flag_equal": 3.615992898058381e-05
+   }
+  },
+  "auc_min": 0.3594898792774802,
+  "auc_max": 0.592459324155194,
+  "n_seg_scored": 50,
+  "n_seg_ci_excl_half": 5,
+  "segs": [
+   {
+    "Variable": "Gender",
+    "Level": "Female",
+    "n": 2459,
+    "Positives": 268,
+    "Prevalence": 0.109,
+    "AUC": 0.5189,
+    "AUC_lo": 0.4791,
+    "AUC_hi": 0.5545,
+    "FlagRate": 0.2025,
+    "Recall": 0.2201,
+    "Precision": 0.1185,
+    "Lift": 1.087
+   },
+   {
+    "Variable": "Gender",
+    "Level": "Male",
+    "n": 2541,
+    "Positives": 276,
+    "Prevalence": 0.1086,
+    "AUC": 0.4835,
+    "AUC_lo": 0.45,
+    "AUC_hi": 0.5181,
+    "FlagRate": 0.1976,
+    "Recall": 0.2101,
+    "Precision": 0.1155,
+    "Lift": 1.0637
+   },
+   {
+    "Variable": "AgeBand4",
+    "Level": "18-39",
+    "n": 1168,
+    "Positives": 149,
+    "Prevalence": 0.1276,
+    "AUC": 0.4994,
+    "AUC_lo": 0.447,
+    "AUC_hi": 0.5484,
+    "FlagRate": 0.3587,
+    "Recall": 0.3557,
+    "Precision": 0.1265,
+    "Lift": 0.9916
+   },
+   {
+    "Variable": "AgeBand4",
+    "Level": "40-59",
+    "n": 1122,
+    "Positives": 121,
+    "Prevalence": 0.1078,
+    "AUC": 0.492,
+    "AUC_lo": 0.442,
+    "AUC_hi": 0.5394,
+    "FlagRate": 0.1684,
+    "Recall": 0.157,
+    "Precision": 0.1005,
+    "Lift": 0.9322
+   },
+   {
+    "Variable": "AgeBand4",
+    "Level": "60+",
+    "n": 1740,
+    "Positives": 172,
+    "Prevalence": 0.0989,
+    "AUC": 0.5091,
+    "AUC_lo": 0.4663,
+    "AUC_hi": 0.5553,
+    "FlagRate": 0.1379,
+    "Recall": 0.1686,
+    "Precision": 0.1208,
+    "Lift": 1.2224
+   },
+   {
+    "Variable": "AgeBand4",
+    "Level": "<18",
+    "n": 970,
+    "Positives": 102,
+    "Prevalence": 0.1052,
+    "AUC": 0.4474,
+    "AUC_lo": 0.3849,
+    "AUC_hi": 0.5068,
+    "FlagRate": 0.1567,
+    "Recall": 0.1569,
+    "Precision": 0.1053,
+    "Lift": 1.001
+   },
+   {
+    "Variable": "ProvinceName",
+    "Level": "Eastern",
+    "n": 1006,
+    "Positives": 120,
+    "Prevalence": 0.1193,
+    "AUC": 0.4911,
+    "AUC_lo": 0.4443,
+    "AUC_hi": 0.5459,
+    "FlagRate": 0.2386,
+    "Recall": 0.25,
+    "Precision": 0.125,
+    "Lift": 1.0479
+   },
+   {
+    "Variable": "ProvinceName",
+    "Level": "Kigali City",
+    "n": 944,
+    "Positives": 106,
+    "Prevalence": 0.1123,
+    "AUC": 0.4951,
+    "AUC_lo": 0.4392,
+    "AUC_hi": 0.5554,
+    "FlagRate": 0.214,
+    "Recall": 0.2075,
+    "Precision": 0.1089,
+    "Lift": 0.9699
+   },
+   {
+    "Variable": "ProvinceName",
+    "Level": "Northern",
+    "n": 1021,
+    "Positives": 108,
+    "Prevalence": 0.1058,
+    "AUC": 0.4921,
+    "AUC_lo": 0.4306,
+    "AUC_hi": 0.5529,
+    "FlagRate": 0.1959,
+    "Recall": 0.2037,
+    "Precision": 0.11,
+    "Lift": 1.0399
+   },
+   {
+    "Variable": "ProvinceName",
+    "Level": "Southern",
+    "n": 978,
+    "Positives": 95,
+    "Prevalence": 0.0971,
+    "AUC": 0.5079,
+    "AUC_lo": 0.4468,
+    "AUC_hi": 0.5869,
+    "FlagRate": 0.1503,
+    "Recall": 0.1895,
+    "Precision": 0.1224,
+    "Lift": 1.2606
+   },
+   {
+    "Variable": "ProvinceName",
+    "Level": "Western",
+    "n": 1051,
+    "Positives": 115,
+    "Prevalence": 0.1094,
+    "AUC": 0.5034,
+    "AUC_lo": 0.443,
+    "AUC_hi": 0.5624,
+    "FlagRate": 0.2008,
+    "Recall": 0.2174,
+    "Precision": 0.1185,
+    "Lift": 1.0828
+   },
+   {
+    "Variable": "ChronicCondition",
+    "Level": "Asthma",
+    "n": 1259,
+    "Positives": 124,
+    "Prevalence": 0.0985,
+    "AUC": 0.5229,
+    "AUC_lo": 0.4681,
+    "AUC_hi": 0.5738,
+    "FlagRate": 0.1732,
+    "Recall": 0.2097,
+    "Precision": 0.1193,
+    "Lift": 1.2109
+   },
+   {
+    "Variable": "ChronicCondition",
+    "Level": "Diabetes",
+    "n": 1216,
+    "Positives": 132,
+    "Prevalence": 0.1086,
+    "AUC": 0.4992,
+    "AUC_lo": 0.4478,
+    "AUC_hi": 0.5468,
+    "FlagRate": 0.2031,
+    "Recall": 0.1742,
+    "Precision": 0.0931,
+    "Lift": 0.8578
+   },
+   {
+    "Variable": "ChronicCondition",
+    "Level": "Hypertension",
+    "n": 1262,
+    "Positives": 149,
+    "Prevalence": 0.1181,
+    "AUC": 0.4971,
+    "AUC_lo": 0.4466,
+    "AUC_hi": 0.5475,
+    "FlagRate": 0.2298,
+    "Recall": 0.2685,
+    "Precision": 0.1379,
+    "Lift": 1.1682
+   },
+   {
+    "Variable": "ChronicCondition",
+    "Level": "None",
+    "n": 1263,
+    "Positives": 139,
+    "Prevalence": 0.1101,
+    "AUC": 0.4814,
+    "AUC_lo": 0.4213,
+    "AUC_hi": 0.5281,
+    "FlagRate": 0.194,
+    "Recall": 0.2014,
+    "Precision": 0.1143,
+    "Lift": 1.0384
+   },
+   {
+    "Variable": "Diagnosis",
+    "Level": "Diabetes",
+    "n": 985,
+    "Positives": 110,
+    "Prevalence": 0.1117,
+    "AUC": 0.4891,
+    "AUC_lo": 0.4307,
+    "AUC_hi": 0.5411,
+    "FlagRate": 0.2223,
+    "Recall": 0.2455,
+    "Precision": 0.1233,
+    "Lift": 1.104
+   },
+   {
+    "Variable": "Diagnosis",
+    "Level": "Gastritis",
+    "n": 1017,
+    "Positives": 98,
+    "Prevalence": 0.0964,
+    "AUC": 0.5155,
+    "AUC_lo": 0.4576,
+    "AUC_hi": 0.5785,
+    "FlagRate": 0.1544,
+    "Recall": 0.2143,
+    "Precision": 0.1338,
+    "Lift": 1.3881
+   },
+   {
+    "Variable": "Diagnosis",
+    "Level": "Hypertension",
+    "n": 1059,
+    "Positives": 111,
+    "Prevalence": 0.1048,
+    "AUC": 0.4964,
+    "AUC_lo": 0.4447,
+    "AUC_hi": 0.5583,
+    "FlagRate": 0.1936,
+    "Recall": 0.1712,
+    "Precision": 0.0927,
+    "Lift": 0.8842
+   },
+   {
+    "Variable": "Diagnosis",
+    "Level": "Malaria",
+    "n": 935,
+    "Positives": 109,
+    "Prevalence": 0.1166,
+    "AUC": 0.5163,
+    "AUC_lo": 0.4586,
+    "AUC_hi": 0.5793,
+    "FlagRate": 0.2021,
+    "Recall": 0.2569,
+    "Precision": 0.1481,
+    "Lift": 1.2708
+   },
+   {
+    "Variable": "Diagnosis",
+    "Level": "Upper Respiratory Infection",
+    "n": 1004,
+    "Positives": 116,
+    "Prevalence": 0.1155,
+    "AUC": 0.4759,
+    "AUC_lo": 0.4137,
+    "AUC_hi": 0.5251,
+    "FlagRate": 0.2291,
+    "Recall": 0.1897,
+    "Precision": 0.0957,
+    "Lift": 0.8279
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Cardiology",
+    "n": 544,
+    "Positives": 65,
+    "Prevalence": 0.1195,
+    "AUC": 0.5831,
+    "AUC_lo": 0.5177,
+    "AUC_hi": 0.641,
+    "FlagRate": 0.204,
+    "Recall": 0.2462,
+    "Precision": 0.1441,
+    "Lift": 1.2064
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Emergency",
+    "n": 495,
+    "Positives": 54,
+    "Prevalence": 0.1091,
+    "AUC": 0.4948,
+    "AUC_lo": 0.4174,
+    "AUC_hi": 0.5798,
+    "FlagRate": 0.2,
+    "Recall": 0.1852,
+    "Precision": 0.101,
+    "Lift": 0.9259
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "ICU",
+    "n": 467,
+    "Positives": 48,
+    "Prevalence": 0.1028,
+    "AUC": 0.4132,
+    "AUC_lo": 0.3208,
+    "AUC_hi": 0.4947,
+    "FlagRate": 0.1777,
+    "Recall": 0.1458,
+    "Precision": 0.0843,
+    "Lift": 0.8205
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Internal Medicine",
+    "n": 490,
+    "Positives": 54,
+    "Prevalence": 0.1102,
+    "AUC": 0.5219,
+    "AUC_lo": 0.4401,
+    "AUC_hi": 0.6014,
+    "FlagRate": 0.2,
+    "Recall": 0.2222,
+    "Precision": 0.1224,
+    "Lift": 1.1111
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Laboratory",
+    "n": 499,
+    "Positives": 55,
+    "Prevalence": 0.1102,
+    "AUC": 0.5774,
+    "AUC_lo": 0.5025,
+    "AUC_hi": 0.6492,
+    "FlagRate": 0.1743,
+    "Recall": 0.2364,
+    "Precision": 0.1494,
+    "Lift": 1.3557
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Obstetrics & Gynecology",
+    "n": 511,
+    "Positives": 66,
+    "Prevalence": 0.1292,
+    "AUC": 0.5255,
+    "AUC_lo": 0.452,
+    "AUC_hi": 0.6062,
+    "FlagRate": 0.274,
+    "Recall": 0.3333,
+    "Precision": 0.1571,
+    "Lift": 1.2167
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Pediatrics",
+    "n": 491,
+    "Positives": 56,
+    "Prevalence": 0.1141,
+    "AUC": 0.4343,
+    "AUC_lo": 0.3552,
+    "AUC_hi": 0.517,
+    "FlagRate": 0.2098,
+    "Recall": 0.1607,
+    "Precision": 0.0874,
+    "Lift": 0.7661
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Pharmacy",
+    "n": 490,
+    "Positives": 51,
+    "Prevalence": 0.1041,
+    "AUC": 0.5257,
+    "AUC_lo": 0.4285,
+    "AUC_hi": 0.6117,
+    "FlagRate": 0.2163,
+    "Recall": 0.3137,
+    "Precision": 0.1509,
+    "Lift": 1.4502
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Radiology",
+    "n": 525,
+    "Positives": 46,
+    "Prevalence": 0.0876,
+    "AUC": 0.3595,
+    "AUC_lo": 0.2759,
+    "AUC_hi": 0.4499,
+    "FlagRate": 0.1429,
+    "Recall": 0.087,
+    "Precision": 0.0533,
+    "Lift": 0.6087
+   },
+   {
+    "Variable": "DepartmentName",
+    "Level": "Surgery",
+    "n": 488,
+    "Positives": 49,
+    "Prevalence": 0.1004,
+    "AUC": 0.5026,
+    "AUC_lo": 0.4236,
+    "AUC_hi": 0.5773,
+    "FlagRate": 0.2008,
+    "Recall": 0.1633,
+    "Precision": 0.0816,
+    "Lift": 0.813
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF001",
+    "n": 273,
+    "Positives": 32,
+    "Prevalence": 0.1172,
+    "AUC": 0.3878,
+    "AUC_lo": 0.2716,
+    "AUC_hi": 0.4912,
+    "FlagRate": 0.1941,
+    "Recall": 0.0938,
+    "Precision": 0.0566,
+    "Lift": 0.4829
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF002",
+    "n": 241,
+    "Positives": 25,
+    "Prevalence": 0.1037,
+    "AUC": 0.4135,
+    "AUC_lo": 0.297,
+    "AUC_hi": 0.5174,
+    "FlagRate": 0.2075,
+    "Recall": 0.12,
+    "Precision": 0.06,
+    "Lift": 0.5784
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF003",
+    "n": 256,
+    "Positives": 27,
+    "Prevalence": 0.1055,
+    "AUC": 0.497,
+    "AUC_lo": 0.3704,
+    "AUC_hi": 0.5992,
+    "FlagRate": 0.1914,
+    "Recall": 0.1852,
+    "Precision": 0.102,
+    "Lift": 0.9675
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF004",
+    "n": 222,
+    "Positives": 34,
+    "Prevalence": 0.1532,
+    "AUC": 0.5925,
+    "AUC_lo": 0.4825,
+    "AUC_hi": 0.6897,
+    "FlagRate": 0.3829,
+    "Recall": 0.5,
+    "Precision": 0.2,
+    "Lift": 1.3059
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF005",
+    "n": 223,
+    "Positives": 19,
+    "Prevalence": 0.0852,
+    "AUC": 0.4476,
+    "AUC_lo": 0.3235,
+    "AUC_hi": 0.5759,
+    "FlagRate": 0.157,
+    "Recall": 0.1053,
+    "Precision": 0.0571,
+    "Lift": 0.6707
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF006",
+    "n": 269,
+    "Positives": 32,
+    "Prevalence": 0.119,
+    "AUC": 0.4508,
+    "AUC_lo": 0.3301,
+    "AUC_hi": 0.5481,
+    "FlagRate": 0.1822,
+    "Recall": 0.0938,
+    "Precision": 0.0612,
+    "Lift": 0.5147
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF007",
+    "n": 224,
+    "Positives": 24,
+    "Prevalence": 0.1071,
+    "AUC": 0.5581,
+    "AUC_lo": 0.4308,
+    "AUC_hi": 0.669,
+    "FlagRate": 0.1652,
+    "Recall": 0.125,
+    "Precision": 0.0811,
+    "Lift": 0.7568
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF008",
+    "n": 257,
+    "Positives": 18,
+    "Prevalence": 0.07,
+    "AUC": 0.4967,
+    "AUC_lo": 0.3749,
+    "AUC_hi": 0.6252,
+    "FlagRate": 0.0739,
+    "Recall": 0.0556,
+    "Precision": 0.0526,
+    "Lift": 0.7515
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF009",
+    "n": 241,
+    "Positives": 27,
+    "Prevalence": 0.112,
+    "AUC": 0.4791,
+    "AUC_lo": 0.3533,
+    "AUC_hi": 0.6229,
+    "FlagRate": 0.1909,
+    "Recall": 0.3333,
+    "Precision": 0.1957,
+    "Lift": 1.7464
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF010",
+    "n": 275,
+    "Positives": 34,
+    "Prevalence": 0.1236,
+    "AUC": 0.5031,
+    "AUC_lo": 0.4101,
+    "AUC_hi": 0.6115,
+    "FlagRate": 0.2655,
+    "Recall": 0.3529,
+    "Precision": 0.1644,
+    "Lift": 1.3296
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF011",
+    "n": 273,
+    "Positives": 23,
+    "Prevalence": 0.0842,
+    "AUC": 0.4083,
+    "AUC_lo": 0.291,
+    "AUC_hi": 0.5364,
+    "FlagRate": 0.1392,
+    "Recall": 0.0,
+    "Precision": 0.0,
+    "Lift": 0.0
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF012",
+    "n": 249,
+    "Positives": 30,
+    "Prevalence": 0.1205,
+    "AUC": 0.4104,
+    "AUC_lo": 0.2989,
+    "AUC_hi": 0.538,
+    "FlagRate": 0.1888,
+    "Recall": 0.2,
+    "Precision": 0.1277,
+    "Lift": 1.0596
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF013",
+    "n": 278,
+    "Positives": 33,
+    "Prevalence": 0.1187,
+    "AUC": 0.4262,
+    "AUC_lo": 0.3214,
+    "AUC_hi": 0.5327,
+    "FlagRate": 0.2014,
+    "Recall": 0.1818,
+    "Precision": 0.1071,
+    "Lift": 0.9026
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF014",
+    "n": 276,
+    "Positives": 34,
+    "Prevalence": 0.1232,
+    "AUC": 0.4131,
+    "AUC_lo": 0.3094,
+    "AUC_hi": 0.5299,
+    "FlagRate": 0.221,
+    "Recall": 0.2353,
+    "Precision": 0.1311,
+    "Lift": 1.0646
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF015",
+    "n": 245,
+    "Positives": 19,
+    "Prevalence": 0.0776,
+    "AUC": 0.4811,
+    "AUC_lo": 0.3347,
+    "AUC_hi": 0.6338,
+    "FlagRate": 0.1102,
+    "Recall": 0.1053,
+    "Precision": 0.0741,
+    "Lift": 0.9552
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF016",
+    "n": 261,
+    "Positives": 40,
+    "Prevalence": 0.1533,
+    "AUC": 0.5166,
+    "AUC_lo": 0.4216,
+    "AUC_hi": 0.5985,
+    "FlagRate": 0.5287,
+    "Recall": 0.525,
+    "Precision": 0.1522,
+    "Lift": 0.9929
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF017",
+    "n": 243,
+    "Positives": 29,
+    "Prevalence": 0.1193,
+    "AUC": 0.5914,
+    "AUC_lo": 0.4992,
+    "AUC_hi": 0.6968,
+    "FlagRate": 0.1687,
+    "Recall": 0.2414,
+    "Precision": 0.1707,
+    "Lift": 1.4306
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF018",
+    "n": 240,
+    "Positives": 24,
+    "Prevalence": 0.1,
+    "AUC": 0.5735,
+    "AUC_lo": 0.4583,
+    "AUC_hi": 0.6719,
+    "FlagRate": 0.1542,
+    "Recall": 0.2083,
+    "Precision": 0.1351,
+    "Lift": 1.3514
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF019",
+    "n": 217,
+    "Positives": 18,
+    "Prevalence": 0.0829,
+    "AUC": 0.5639,
+    "AUC_lo": 0.4496,
+    "AUC_hi": 0.6716,
+    "FlagRate": 0.129,
+    "Recall": 0.1667,
+    "Precision": 0.1071,
+    "Lift": 1.2917
+   },
+   {
+    "Variable": "FacilityID",
+    "Level": "HF020",
+    "n": 237,
+    "Positives": 22,
+    "Prevalence": 0.0928,
+    "AUC": 0.4803,
+    "AUC_lo": 0.3593,
+    "AUC_hi": 0.6035,
+    "FlagRate": 0.1308,
+    "Recall": 0.0455,
+    "Precision": 0.0323,
+    "Lift": 0.3475
+   }
+  ]
+ },
+ "t11a": [
+  {
+   "Feature": "Age",
+   "Source": "Patients.DateOfBirth",
+   "Week 6 evidence": "Consistent with DOB; but uniform 0-90, no age gradient in any outcome (Week 6 EDA)",
+   "Grade": "Valid, uninformative"
+  },
+  {
+   "Feature": "Gender",
+   "Source": "Patients.Gender",
+   "Week 6 evidence": "Valid; ~50/50; names do not match sex",
+   "Grade": "Valid, uninformative"
+  },
+  {
+   "Feature": "HasChronic / ChronicCondition",
+   "Source": "Patients.ChronicCondition",
+   "Week 6 evidence": "75% prevalence in every age band, 1,005 children with hypertension (Week 6 EDA)",
+   "Grade": "Questionable coding"
+  },
+  {
+   "Feature": "Diagnosis",
+   "Source": "Diagnoses",
+   "Week 6 evidence": "5 diagnoses, each ~20%; assigned at consultation, so not known at booking",
+   "Grade": "Valid, timing caveat"
+  },
+  {
+   "Feature": "PriorVisits",
+   "Source": "Appointments (derived)",
+   "Week 6 evidence": "Counts earlier visits only (verified in section 0.1); but extract holds 22% of patients and 8% of billing history",
+   "Grade": "Valid, truncated history"
+  },
+  {
+   "Feature": "MonthNum / WeekdayNum",
+   "Source": "Appointments.Date",
+   "Week 6 evidence": "874 appointments dated after the 24 Oct 2026 analysis date carry diagnoses and bills",
+   "Grade": "Valid, future-dated rows"
+  },
+  {
+   "Feature": "DoctorYears",
+   "Source": "Doctors.YearsExperience",
+   "Week 6 evidence": "Doctor's home department differs from appointment department in 99.4% of rows",
+   "Grade": "Questionable link"
+  },
+  {
+   "Feature": "DeptWorkloadIndex",
+   "Source": "Derived from departments",
+   "Week 6 evidence": "Computed on all 5,000 appointments (including future test rows); staffing 4-9 per department",
+   "Grade": "Derived on full data"
+  },
+  {
+   "Feature": "DepartmentName",
+   "Source": "Departments",
+   "Week 6 evidence": "Appointment facility differs from the department's owning facility in 94.9% of rows (Critical, Week 6)",
+   "Grade": "Unreliable"
+  },
+  {
+   "Feature": "FacilityID",
+   "Source": "Appointments.FacilityID",
+   "Week 6 evidence": "Same 94.9% disagreement; 20 one-hot columns for ~25 positives each",
+   "Grade": "Unreliable"
+  },
+  {
+   "Feature": "BMI_clean",
+   "Source": "Patients.BMI",
+   "Week 6 evidence": "Set to missing for under-18s (19% missing); adult-range height/weight recorded for 2,594 children",
+   "Grade": "Unreliable"
+  },
+  {
+   "Feature": "ProvinceName",
+   "Source": "Geography",
+   "Week 6 evidence": "Patient to village to province chain is clean; districts are placeholders",
+   "Grade": "Valid, uninformative"
+  }
+ ],
+ "t11b": [
+  {
+   "Dropped": "None (all 14 features)",
+   "AUC": 0.5045,
+   "SD": 0.0052,
+   "Delta": 0.0
+  },
+  {
+   "Dropped": "Unreliable (Facility, Department, BMI)",
+   "AUC": 0.5071,
+   "SD": 0.0098,
+   "Delta": 0.0026
+  },
+  {
+   "Dropped": "Geography (Province)",
+   "AUC": 0.5026,
+   "SD": 0.0069,
+   "Delta": -0.0019
+  },
+  {
+   "Dropped": "Clinical (Diagnosis, Chronic)",
+   "AUC": 0.5125,
+   "SD": 0.007,
+   "Delta": 0.008
+  },
+  {
+   "Dropped": "Demographic (Age, Gender)",
+   "AUC": 0.4925,
+   "SD": 0.0057,
+   "Delta": -0.012
+  },
+  {
+   "Dropped": "Utilisation (Prior visits, Month, Weekday)",
+   "AUC": 0.5074,
+   "SD": 0.0016,
+   "Delta": 0.0029
+  },
+  {
+   "Dropped": "Provider (Doctor yrs, Dept workload)",
+   "AUC": 0.5018,
+   "SD": 0.0031,
+   "Delta": -0.0027
+  }
+ ],
+ "t11b_pi": [
+  {
+   "Feature": "Age",
+   "Importance": 0.0173,
+   "SD": 0.0181
+  },
+  {
+   "Feature": "DeptWorkloadIndex",
+   "Importance": 0.0156,
+   "SD": 0.0169
+  },
+  {
+   "Feature": "MonthNum",
+   "Importance": 0.0056,
+   "SD": 0.0053
+  },
+  {
+   "Feature": "PriorVisits",
+   "Importance": 0.0022,
+   "SD": 0.0018
+  },
+  {
+   "Feature": "HasChronic",
+   "Importance": 0.0006,
+   "SD": 0.0006
+  },
+  {
+   "Feature": "DoctorYears",
+   "Importance": -0.0001,
+   "SD": 0.0073
+  },
+  {
+   "Feature": "Gender",
+   "Importance": -0.0004,
+   "SD": 0.0013
+  },
+  {
+   "Feature": "FacilityID",
+   "Importance": -0.0034,
+   "SD": 0.0135
+  },
+  {
+   "Feature": "WeekdayNum",
+   "Importance": -0.0041,
+   "SD": 0.0076
+  },
+  {
+   "Feature": "ProvinceName",
+   "Importance": -0.0069,
+   "SD": 0.0097
+  },
+  {
+   "Feature": "ChronicCondition",
+   "Importance": -0.0069,
+   "SD": 0.0073
+  },
+  {
+   "Feature": "DepartmentName",
+   "Importance": -0.0111,
+   "SD": 0.0108
+  },
+  {
+   "Feature": "Diagnosis",
+   "Importance": -0.0116,
+   "SD": 0.0118
+  },
+  {
+   "Feature": "BMI_clean",
+   "Importance": -0.0131,
+   "SD": 0.011
+  }
+ ],
+ "t11b_pi_max": 0.017280833021573735,
+ "t11b_pi_n_pos": 0,
+ "t11c": [
+  {
+   "Check": "Target columns absent from features",
+   "Pass": "PASS",
+   "Evidence": "VisitType, Severity, SeverityScore are not model inputs"
+  },
+  {
+   "Check": "PriorVisits counts only strictly earlier visits",
+   "Pass": "PASS",
+   "Evidence": "Recomputed from dates and matched on all 5,000 rows"
+  },
+  {
+   "Check": "DeptWorkloadIndex recomputed inside each training fold",
+   "Pass": "FLAG",
+   "Evidence": "AUC 0.514 vs 0.501 when computed on all rows: no leakage effect"
+  },
+  {
+   "Check": "Diagnosis available when the prediction is made",
+   "Pass": "FLAG",
+   "Evidence": "Diagnosis is recorded at consultation; a booking-time model could not use it. Timing caveat for deployment, not a CV leak"
+  }
+ ],
+ "t11d": [
+  {
+   "Scenario": "All 5,000 appointments (as built)",
+   "n": 5000,
+   "Positives": 544,
+   "AUC": 0.5045,
+   "SD": 0.0052
+  },
+  {
+   "Scenario": "Exclude 874 future-dated appointments",
+   "n": 4126,
+   "Positives": 453,
+   "AUC": 0.5038,
+   "SD": 0.0061
+  },
+  {
+   "Scenario": "Adults only (BMI valid)",
+   "n": 4030,
+   "Positives": 442,
+   "AUC": 0.4974,
+   "SD": 0.0055
+  },
+  {
+   "Scenario": "First visit per patient only",
+   "n": 4443,
+   "Positives": 488,
+   "AUC": 0.5042,
+   "SD": 0.0099
+  }
+ ],
+ "t12": [
+  {
+   "Target": "Admission proxy (Emergency & Severe) [Week 6 target]",
+   "n": 5000,
+   "Prevalence": 0.1088,
+   "AUC": 0.4931,
+   "CI_lo": 0.4702,
+   "CI_hi": 0.5369,
+   "Signal": "none"
+  },
+  {
+   "Target": "Emergency visit",
+   "n": 5000,
+   "Prevalence": 0.33,
+   "AUC": 0.4961,
+   "CI_lo": 0.4735,
+   "CI_hi": 0.52,
+   "Signal": "none"
+  },
+  {
+   "Target": "Severe diagnosis",
+   "n": 5000,
+   "Prevalence": 0.3244,
+   "AUC": 0.4897,
+   "CI_lo": 0.4616,
+   "CI_hi": 0.5124,
+   "Signal": "none"
+  },
+  {
+   "Target": "Follow-Up visit",
+   "n": 5000,
+   "Prevalence": 0.3388,
+   "AUC": 0.4907,
+   "CI_lo": 0.4828,
+   "CI_hi": 0.529,
+   "Signal": "none"
+  },
+  {
+   "Target": "Returning patient (PriorVisits>0)",
+   "n": 5000,
+   "Prevalence": 0.1114,
+   "AUC": 0.6758,
+   "CI_lo": 0.642,
+   "CI_hi": 0.7006,
+   "Signal": "DETECTED"
+  },
+  {
+   "Target": "Returning patient, month removed (artifact check)",
+   "n": 5000,
+   "Prevalence": 0.1114,
+   "AUC": 0.4982,
+   "CI_lo": 0.4554,
+   "CI_hi": 0.5256,
+   "Signal": "none"
+  },
+  {
+   "Target": "High bill (top tertile)",
+   "n": 5000,
+   "Prevalence": 0.3302,
+   "AUC": 0.4948,
+   "CI_lo": 0.4786,
+   "CI_hi": 0.5271,
+   "Signal": "none"
+  },
+  {
+   "Target": "Underpaid bill (outstanding > 0)",
+   "n": 5000,
+   "Prevalence": 0.2004,
+   "AUC": 0.4969,
+   "CI_lo": 0.4684,
+   "CI_hi": 0.5249,
+   "Signal": "none"
+  },
+  {
+   "Target": "Insurance claim still pending",
+   "n": 3521,
+   "Prevalence": 0.4962,
+   "AUC": 0.5072,
+   "CI_lo": 0.4793,
+   "CI_hi": 0.5288,
+   "Signal": "none"
+  },
+  {
+   "Target": "Low satisfaction (rating 1-2)",
+   "n": 1756,
+   "Prevalence": 0.4095,
+   "AUC": 0.4549,
+   "CI_lo": 0.4101,
+   "CI_hi": 0.4887,
+   "Signal": "none"
+  },
+  {
+   "Target": "POSITIVE CONTROL: Age >= 65",
+   "n": 5000,
+   "Prevalence": 0.2942,
+   "AUC": 0.9998,
+   "CI_lo": 0.9996,
+   "CI_hi": 0.9999,
+   "Signal": "DETECTED"
+  },
+  {
+   "Target": "POSITIVE CONTROL: rule-based high-risk flag",
+   "n": 5000,
+   "Prevalence": 0.4144,
+   "AUC": 0.8593,
+   "CI_lo": 0.8458,
+   "CI_hi": 0.8709,
+   "Signal": "DETECTED"
+  }
+ ],
+ "t12_positive_control_ok": true,
+ "t_delta": [
+  {
+   "Evaluation": "Out-of-fold, n=5,000",
+   "Comparison": "Candidate vs Prevalence baseline",
+   "Delta_AUC": 0.0021,
+   "CI_lo": -0.0317,
+   "CI_hi": 0.0353,
+   "p": 0.917,
+   "Meaningful": "NO"
+  },
+  {
+   "Evaluation": "Out-of-fold, n=5,000",
+   "Comparison": "Candidate vs Logistic regression",
+   "Delta_AUC": 0.0068,
+   "CI_lo": -0.0202,
+   "CI_hi": 0.0337,
+   "p": 0.611,
+   "Meaningful": "NO"
+  },
+  {
+   "Evaluation": "Locked hold-out, n=999",
+   "Comparison": "Candidate vs Prevalence baseline",
+   "Delta_AUC": -0.0206,
+   "CI_lo": -0.0755,
+   "CI_hi": 0.0322,
+   "p": 0.492,
+   "Meaningful": "NO"
+  },
+  {
+   "Evaluation": "Locked hold-out, n=999",
+   "Comparison": "Candidate vs Logistic regression",
+   "Delta_AUC": 0.0015,
+   "CI_lo": -0.0541,
+   "CI_hi": 0.0566,
+   "p": 0.916,
+   "Meaningful": "NO"
+  }
+ ],
+ "t6": {
+  "n_train": 3096,
+  "n_test": 1643,
+  "prev_train": 0.10626614987080103,
+  "prev_test": 0.11259890444309191,
+  "auc": 0.46741556371186,
+  "auc_ci": [
+   0.42680261725527974,
+   0.513044405255323
+  ],
+  "lift": 0.6546950796950797,
+  "lift_ci": [
+   0.4361671508221739,
+   0.9012307735654764
+  ]
+ },
+ "gate_asbuilt": [
+  {
+   "ID": "AC1",
+   "Type": "S",
+   "Criterion": "Reproducibility",
+   "Observed": "max |diff| = 0.0036",
+   "Result": "PASS"
+  },
+  {
+   "ID": "AC2",
+   "Type": "M",
+   "Criterion": "Hold-out discrimination",
+   "Observed": "AUC 0.479 (95% CI 0.424-0.534)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC3",
+   "Type": "M",
+   "Criterion": "Operational lift (top 20%)",
+   "Observed": "lift 0.73x (95% CI 0.41-1.09)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC4",
+   "Type": "S",
+   "Criterion": "Stability (10 runs)",
+   "Observed": "0% of runs AUC>0.55; mean 0.504",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC5",
+   "Type": "M",
+   "Criterion": "Permutation test",
+   "Observed": "p = 0.515",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC6",
+   "Type": "S",
+   "Criterion": "Calibration",
+   "Observed": "slope 0.07 (CI -0.28-0.41); Brier 0.0975 vs prevalence 0.0970",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC7",
+   "Type": "S",
+   "Criterion": "Over-fitting gap",
+   "Observed": "train 0.747 - validation 0.502 = 0.244",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC8",
+   "Type": "S",
+   "Criterion": "Time-based AUC",
+   "Observed": "AUC 0.467 (CI 0.427-0.513)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC9",
+   "Type": "M",
+   "Criterion": "Improvement vs baseline",
+   "Observed": "delta-AUC 0.002 (95% CI -0.032 to 0.035)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC10",
+   "Type": "S",
+   "Criterion": "Segment parity",
+   "Observed": "max recall gap 19.9 pp; max flag-rate gap 22.1 pp",
+   "Result": "FAIL"
+  }
+ ],
+ "gate_asbuilt_pass": false,
+ "selection": [
+  {
+   "Candidate": "A. As built (GB, 14 features)",
+   "Features": 14,
+   "CV_AUC": 0.5054,
+   "SE": 0.0008,
+   "Train_AUC": 0.7502,
+   "Gap": 0.2433
+  },
+  {
+   "Candidate": "B. Shallow GB, 10 reliable features",
+   "Features": 10,
+   "CV_AUC": 0.4907,
+   "SE": 0.0008,
+   "Train_AUC": 0.6118,
+   "Gap": 0.1184
+  },
+  {
+   "Candidate": "C. Ridge logistic, 10 reliable features",
+   "Features": 10,
+   "CV_AUC": 0.5057,
+   "SE": 0.0043,
+   "Train_AUC": 0.5627,
+   "Gap": 0.0545
+  },
+  {
+   "Candidate": "D. Ridge logistic, 5 core features",
+   "Features": 5,
+   "CV_AUC": 0.5046,
+   "SE": 0.0048,
+   "Train_AUC": 0.5451,
+   "Gap": 0.0326
+  }
+ ],
+ "chosen": "D. Ridge logistic, 5 core features",
+ "gate_ref": [
+  {
+   "ID": "AC1",
+   "Type": "S",
+   "Criterion": "Reproducibility",
+   "Observed": "n/a (new model)",
+   "Result": "n/a"
+  },
+  {
+   "ID": "AC2",
+   "Type": "M",
+   "Criterion": "Hold-out discrimination",
+   "Observed": "AUC 0.467 (95% CI 0.410-0.522)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC3",
+   "Type": "M",
+   "Criterion": "Operational lift (top 20%)",
+   "Observed": "lift 0.83x (95% CI 0.52-1.18)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC4",
+   "Type": "S",
+   "Criterion": "Stability (10 runs)",
+   "Observed": "0% of runs AUC>0.55; mean 0.486",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC5",
+   "Type": "M",
+   "Criterion": "Permutation test",
+   "Observed": "p = 0.723",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC6",
+   "Type": "S",
+   "Criterion": "Calibration",
+   "Observed": "slope -0.40 (CI -1.17-0.37); Brier 0.0972 vs prevalence 0.0970",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC7",
+   "Type": "S",
+   "Criterion": "Over-fitting gap",
+   "Observed": "train 0.534 - validation 0.488 = 0.046",
+   "Result": "PASS"
+  },
+  {
+   "ID": "AC8",
+   "Type": "S",
+   "Criterion": "Time-based AUC",
+   "Observed": "AUC 0.506 (CI 0.461-0.555)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC9",
+   "Type": "M",
+   "Criterion": "Improvement vs baseline",
+   "Observed": "delta-AUC -0.018 (95% CI -0.053 to 0.013)",
+   "Result": "FAIL"
+  },
+  {
+   "ID": "AC10",
+   "Type": "S",
+   "Criterion": "Segment parity",
+   "Observed": "max recall gap 37.3 pp; max flag-rate gap 40.8 pp",
+   "Result": "FAIL"
+  }
+ ],
+ "gate_ref_pass": false,
+ "R_ref": {
+  "repro": null,
+  "te_auc": 0.46701064139335746,
+  "te_lo": 0.41019115194890116,
+  "te_hi": 0.5218543397679541,
+  "lift": 0.8324999999999999,
+  "lift_lo": 0.5155342445223358,
+  "lift_hi": 1.180596152586299,
+  "rep_share": 0.0,
+  "rep_mean": 0.486064126194688,
+  "perm_p": 0.7227722772277227,
+  "slope": -0.4005389087210223,
+  "slope_lo": -1.1663994105610147,
+  "slope_hi": 0.36532159311897,
+  "brier": 0.09719514876947116,
+  "brier_prev": 0.09696256,
+  "train_auc": 0.5339495755402445,
+  "val_auc": 0.48837567276361016,
+  "gap": 0.04557390277663431,
+  "tmp_auc": 0.5063007451896341,
+  "tmp_lo": 0.4608621367344877,
+  "tmp_hi": 0.5551137428150135,
+  "d": -0.01809275662688775,
+  "d_lo": -0.053243003373764405,
+  "d_hi": 0.012873876780972016,
+  "rec_gap": 0.37289101687186504,
+  "flag_gap": 0.4084429434767153
+ },
+ "R_asbuilt": {
+  "repro": 0.0036,
+  "te_auc": 0.4793563204057031,
+  "te_lo": 0.42444910729921825,
+  "te_hi": 0.5338383170228813,
+  "lift": 0.7275280898876404,
+  "lift_lo": 0.40813670791077983,
+  "lift_hi": 1.0924491753067374,
+  "rep_share": 0.0,
+  "rep_mean": 0.5042284155863872,
+  "perm_p": 0.5148514851485149,
+  "slope": 0.06535624274345792,
+  "slope_lo": -0.2842404937080333,
+  "slope_hi": 0.4149529791949491,
+  "brier": 0.0975334363097611,
+  "brier_prev": 0.09696256,
+  "train_auc": 0.7465900668950014,
+  "val_auc": 0.5024910151072051,
+  "gap": 0.24409905178779634,
+  "tmp_auc": 0.46741556371186,
+  "tmp_lo": 0.42680261725527974,
+  "tmp_hi": 0.513044405255323,
+  "d": 0.002137526071918916,
+  "d_lo": -0.03166529323144917,
+  "d_hi": 0.035296256240257534,
+  "rec_gap": 0.19884195288853795,
+  "flag_gap": 0.22080184222957017
+ },
+ "perm_ref": {
+  "observed": 0.4811269421929454,
+  "null_mean": 0.49446339700601966,
+  "null_p95": 0.5301898897883883,
+  "p": 0.7227722772277227
+ },
+ "before_after": [
+  {
+   "Version": "Before: Week 6 candidate",
+   "Features": 14,
+   "Train_AUC": 0.7466,
+   "CV_AUC": 0.5025,
+   "Overfit_gap": 0.2441,
+   "Holdout_AUC": 0.4794,
+   "Holdout_CI": "0.424-0.534",
+   "Time_split_AUC": 0.4674,
+   "Top20_lift": 0.7275,
+   "Permutation_p": 0.5149,
+   "Calib_slope": 0.0654,
+   "Mandatory_criteria_met": "no"
+  },
+  {
+   "Version": "After: D. Ridge logistic, 5 core features",
+   "Features": 5,
+   "Train_AUC": 0.5339,
+   "CV_AUC": 0.4884,
+   "Overfit_gap": 0.0456,
+   "Holdout_AUC": 0.467,
+   "Holdout_CI": "0.410-0.522",
+   "Time_split_AUC": 0.5063,
+   "Top20_lift": 0.8325,
+   "Permutation_p": 0.7228,
+   "Calib_slope": -0.4005,
+   "Mandatory_criteria_met": "no"
+  }
+ ],
+ "op_after": {
+  "F1_flag_rate_before": 0.9534,
+  "F1_flag_rate_after": 0.8218218218218218,
+  "top20_precision_after": 0.09
+ },
+ "contract": {
+  "before": [
+   {
+    "ID": "C1",
+    "Scenario": "Valid batch of 5",
+    "Expected": "Scores in [0,1], no null",
+    "Result": "PASS",
+    "Detail": "5 rows, scores 0.091-0.108"
+   },
+   {
+    "ID": "C2",
+    "Scenario": "Single row",
+    "Expected": "Scored",
+    "Result": "PASS",
+    "Detail": "1 row"
+   },
+   {
+    "ID": "C3",
+    "Scenario": "Missing numeric values",
+    "Expected": "Scored (imputed)",
+    "Result": "PASS",
+    "Detail": "numeric null handled"
+   },
+   {
+    "ID": "C4",
+    "Scenario": "Missing categorical value",
+    "Expected": "Scored, flagged",
+    "Result": "PASS",
+    "Detail": "categorical null handled"
+   },
+   {
+    "ID": "C5",
+    "Scenario": "Unseen category ('Zanzibar' in a categorical column)",
+    "Expected": "Scored AND visible in status",
+    "Result": "FAIL",
+    "Detail": "row status: SCORED"
+   },
+   {
+    "ID": "C6",
+    "Scenario": "Required column missing",
+    "Expected": "Clear error naming the column",
+    "Result": "PASS",
+    "Detail": "ValueError: columns are missing: {'Age'}"
+   },
+   {
+    "ID": "C7",
+    "Scenario": "Extra unexpected column",
+    "Expected": "Ignored, scores unchanged",
+    "Result": "PASS",
+    "Detail": "extra column ignored, scores unchanged"
+   },
+   {
+    "ID": "C8",
+    "Scenario": "Columns in different order",
+    "Expected": "Same scores",
+    "Result": "PASS",
+    "Detail": "column order does not matter"
+   },
+   {
+    "ID": "C9",
+    "Scenario": "Numbers sent as text ('45')",
+    "Expected": "Coerced, same scores",
+    "Result": "PASS",
+    "Detail": "numeric strings coerced"
+   },
+   {
+    "ID": "C10",
+    "Scenario": "Non-numeric value ('abc') in Age",
+    "Expected": "Bad row rejected, rest of batch scored",
+    "Result": "FAIL",
+    "Detail": "EXCEPTION ValueError: Cannot use median strategy with non-numeric data:\ncould not convert string to float: 'abc'"
+   },
+   {
+    "ID": "C11",
+    "Scenario": "Impossible values (Age 250, PriorVisits -3)",
+    "Expected": "Bad rows rejected, rest scored",
+    "Result": "FAIL",
+    "Detail": "Age=250 and PriorVisits=-3 rejected, rest scored"
+   },
+   {
+    "ID": "C12",
+    "Scenario": "Wrong text case ('female','MALARIA')",
+    "Expected": "Normalised, same scores",
+    "Result": "FAIL",
+    "Detail": "case differences normalised"
+   },
+   {
+    "ID": "C13",
+    "Scenario": "Empty input",
+    "Expected": "Empty output, no crash",
+    "Result": "FAIL",
+    "Detail": "EXCEPTION ValueError: Found array with 0 sample(s) (shape=(0, 8)) while a minimum of 1 is required by SimpleImputer."
+   },
+   {
+    "ID": "C14",
+    "Scenario": "Repeat call determinism",
+    "Expected": "Identical output",
+    "Result": "PASS",
+    "Detail": "identical output on repeat call"
+   },
+   {
+    "ID": "C15",
+    "Scenario": "Duplicate row index",
+    "Expected": "Scored",
+    "Result": "PASS",
+    "Detail": "duplicate index handled"
+   }
+  ],
+  "after": [
+   {
+    "ID": "C1",
+    "Scenario": "Valid batch of 5",
+    "Expected": "Scores in [0,1], no null",
+    "Result": "PASS",
+    "Detail": "5 rows, scores 0.104-0.124"
+   },
+   {
+    "ID": "C2",
+    "Scenario": "Single row",
+    "Expected": "Scored",
+    "Result": "PASS",
+    "Detail": "1 row"
+   },
+   {
+    "ID": "C3",
+    "Scenario": "Missing numeric values",
+    "Expected": "Scored (imputed)",
+    "Result": "PASS",
+    "Detail": "numeric null handled"
+   },
+   {
+    "ID": "C4",
+    "Scenario": "Missing categorical value",
+    "Expected": "Scored, flagged",
+    "Result": "PASS",
+    "Detail": "categorical null handled"
+   },
+   {
+    "ID": "C5",
+    "Scenario": "Unseen category ('Zanzibar' in a categorical column)",
+    "Expected": "Scored AND visible in status",
+    "Result": "PASS",
+    "Detail": "row status: SCORED_WITH_WARNINGS: Diagnosis unseen category 'Zanzibar'"
+   },
+   {
+    "ID": "C6",
+    "Scenario": "Required column missing",
+    "Expected": "Clear error naming the column",
+    "Result": "PASS",
+    "Detail": "SchemaError: Missing required column(s): ['Age']. Expected: ['Age', 'PriorVisits', 'HasChronic', 'Gender', 'Diagnosis']"
+   },
+   {
+    "ID": "C7",
+    "Scenario": "Extra unexpected column",
+    "Expected": "Ignored, scores unchanged",
+    "Result": "PASS",
+    "Detail": "extra column ignored, scores unchanged"
+   },
+   {
+    "ID": "C8",
+    "Scenario": "Columns in different order",
+    "Expected": "Same scores",
+    "Result": "PASS",
+    "Detail": "column order does not matter"
+   },
+   {
+    "ID": "C9",
+    "Scenario": "Numbers sent as text ('45')",
+    "Expected": "Coerced, same scores",
+    "Result": "PASS",
+    "Detail": "numeric strings coerced"
+   },
+   {
+    "ID": "C10",
+    "Scenario": "Non-numeric value ('abc') in Age",
+    "Expected": "Bad row rejected, rest of batch scored",
+    "Result": "PASS",
+    "Detail": "row 1 rejected, rows 2-5 scored"
+   },
+   {
+    "ID": "C11",
+    "Scenario": "Impossible values (Age 250, PriorVisits -3)",
+    "Expected": "Bad rows rejected, rest scored",
+    "Result": "PASS",
+    "Detail": "Age=250 and PriorVisits=-3 rejected, rest scored"
+   },
+   {
+    "ID": "C12",
+    "Scenario": "Wrong text case ('female','MALARIA')",
+    "Expected": "Normalised, same scores",
+    "Result": "PASS",
+    "Detail": "case differences normalised"
+   },
+   {
+    "ID": "C13",
+    "Scenario": "Empty input",
+    "Expected": "Empty output, no crash",
+    "Result": "PASS",
+    "Detail": "empty input returns empty output"
+   },
+   {
+    "ID": "C14",
+    "Scenario": "Repeat call determinism",
+    "Expected": "Identical output",
+    "Result": "PASS",
+    "Detail": "identical output on repeat call"
+   },
+   {
+    "ID": "C15",
+    "Scenario": "Duplicate row index",
+    "Expected": "Scored",
+    "Result": "PASS",
+    "Detail": "duplicate index handled"
+   }
+  ],
+  "before_pass": 10,
+  "after_pass": 15,
+  "n": 15,
+  "fresh_process_exit": 0,
+  "reload_identical": true
+ },
+ "contract_demo": [
+  {
+   "risk_score": "0.11890040916643357",
+   "flag_top20": "1",
+   "status": "SCORED_WITH_WARNINGS: ignored columns ['MonthNum', 'WeekdayNum', 'DoctorYears', 'ChronicCondition', 'ProvinceName']",
+   "model_status": "..."
+  },
+  {
+   "risk_score": null,
+   "flag_top20": null,
+   "status": "REJECTED: Age out of range [0.0,110.0]",
+   "model_status": "..."
+  },
+  {
+   "risk_score": null,
+   "flag_top20": null,
+   "status": "REJECTED: Age not numeric",
+   "model_status": "..."
+  },
+  {
+   "risk_score": "0.10709778306473176",
+   "flag_top20": "0",
+   "status": "SCORED_WITH_WARNINGS: PriorVisits missing (imputed); Diagnosis unseen category 'Typhoid' | ignored columns ['MonthNum', 'WeekdayNum', 'DoctorYears', 'ChronicCondition', 'ProvinceName']",
+   "model_status": "..."
+  }
+ ],
+ "da_validation": [
+  {
+   "Analytical finding (Week 6)": "Appointment facility differs from department's owning facility",
+   "Week 6 value": "94.9% (4,744 rows)",
+   "Independent re-computation (raw files)": "94.9% (4,744 rows)",
+   "Confirmed": "CONFIRMED",
+   "Effect on modelling decision": "FacilityID and DepartmentName removed (R1); ablation shows no AUC loss"
+  },
+  {
+   "Analytical finding (Week 6)": "Bills whose appointment is missing",
+   "Week 6 value": "55,000",
+   "Independent re-computation (raw files)": "55,000",
+   "Confirmed": "CONFIRMED",
+   "Effect on modelling decision": "Appointment-level modelling limited to 5,000 linked rows"
+  },
+  {
+   "Analytical finding (Week 6)": "Diagnoses whose appointment is missing",
+   "Week 6 value": "55,000",
+   "Independent re-computation (raw files)": "55,000",
+   "Confirmed": "CONFIRMED",
+   "Effect on modelling decision": "Same limit; more modelling data cannot be obtained until keys are repaired"
+  },
+  {
+   "Analytical finding (Week 6)": "Appointments dated after 24 Oct 2026",
+   "Week 6 value": "874",
+   "Independent re-computation (raw files)": "874",
+   "Confirmed": "CONFIRMED",
+   "Effect on modelling decision": "Sensitivity test T11d: excluding them does not change AUC"
+  },
+  {
+   "Analytical finding (Week 6)": "Bill Status label carries no payment information",
+   "Week 6 value": "Paid 90.0% / Partial 90.1% / Pending 90.2% paid (p=0.643)",
+   "Independent re-computation (raw files)": "Paid 90.0% / Partial 90.1% / Pending 90.2% paid (p=0.643)",
+   "Confirmed": "CONFIRMED",
+   "Effect on modelling decision": "BillStatus never used as a feature (satisfaction model excluded it from conclusions)"
+  },
+  {
+   "Analytical finding (Week 6)": "Follow-Up visits with no earlier visit in the extract (NEW)",
+   "Week 6 value": "not reported in Week 6",
+   "Independent re-computation (raw files)": "88.0%",
+   "Confirmed": "NEW",
+   "Effect on modelling decision": "NEW finding for Data Analytics: VisitType or the extract's history is incomplete; PriorVisits is a truncated-history feature"
+  }
+ ],
+ "suitability": [
+  {
+   "Question": "Is the model accurate enough to use?",
+   "Answer": "No",
+   "Evidence": "Hold-out AUC 0.479 before and 0.467 after refinement; permutation p = 0.51 / 0.72; time-split AUC 0.47"
+  },
+  {
+   "Question": "Are its strengths and weaknesses understood?",
+   "Answer": "Yes",
+   "Evidence": "Fully characterised: no signal in any feature (T11), in any alternative target (T12), in any segment (T10); test harness proven by positive controls"
+  },
+  {
+   "Question": "Is it safe to hand to ML Engineering?",
+   "Answer": "Yes, as a tested interface only",
+   "Evidence": "15/15 contract tests pass (was 10/15); model carries an explicit 'no predictive signal' status"
+  },
+  {
+   "Question": "Is it suitable for the HealthConnect use case?",
+   "Answer": "No",
+   "Evidence": "Mandatory criteria AC2, AC3, AC5 and AC9 fail for both versions; gate result: FAIL. Using it would assign arbitrary risk scores to patients"
+  },
+  {
+   "Question": "What is the right use of the work now?",
+   "Answer": "Re-usable test harness",
+   "Evidence": "The same suite re-runs unchanged when admissions or attendance outcomes arrive; refined feature set and release gate are the starting point"
+  }
+ ],
+ "issues": [
+  {
+   "ID": "I1",
+   "Issue": "Over-fitting in the Week 6 candidate (train AUC 0.75 vs validation 0.50)",
+   "Severity": "High",
+   "Owner track": "Data Science",
+   "Status": "MITIGATED",
+   "Action / resolution": "Regularised model on reliable features (R1, R2): gap 0.05 (AC7 limit 0.05 still narrowly missed)"
+  },
+  {
+   "ID": "I2",
+   "Issue": "Unreliable features (facility/department 94.9% mismatch, BMI for minors) inside the model",
+   "Severity": "High",
+   "Owner track": "Data Science / Data Analytics",
+   "Status": "RESOLVED",
+   "Action / resolution": "Removed; ablation shows no performance loss (T11b)"
+  },
+  {
+   "ID": "I3",
+   "Issue": "F1-maximising threshold flags 95% of appointments (lift 1.0x)",
+   "Severity": "Medium",
+   "Owner track": "Data Science",
+   "Status": "RESOLVED",
+   "Action / resolution": "Top-20% flag-rate budget with lift reporting (R3)"
+  },
+  {
+   "ID": "I4",
+   "Issue": "No release gate: a no-signal model could be deployed",
+   "Severity": "High",
+   "Owner track": "Data Science / Project Management",
+   "Status": "RESOLVED",
+   "Action / resolution": "Executable gate AC1-AC10 (R4); result recorded in schema.json"
+  },
+  {
+   "ID": "I5",
+   "Issue": "Silent failures at the model interface (impossible values, mis-cased text, whole-batch failures)",
+   "Severity": "High",
+   "Owner track": "Data Science / ML Engineering",
+   "Status": "RESOLVED (DS side); no ML Engineering counterpart available",
+   "Action / resolution": "Scorer wrapper; contract tests 10/15 -> 15/15"
+  },
+  {
+   "ID": "I6",
+   "Issue": "No predictive signal in any available feature or alternative target (data looks simulated)",
+   "Severity": "Critical",
+   "Owner track": "Data Analytics / Project Management / data owner",
+   "Status": "OPEN",
+   "Action / resolution": "Escalated: needs real outcome data; cannot be fixed by modelling"
+  },
+  {
+   "ID": "I7",
+   "Issue": "No Admissions table: admission is modelled through a proxy (Emergency & Severe)",
+   "Severity": "Critical",
+   "Owner track": "Project Management / data owner",
+   "Status": "OPEN",
+   "Action / resolution": "Obtain Admissions, Referrals, Laboratory and Prescriptions tables"
+  },
+  {
+   "ID": "I8",
+   "Issue": "No attendance / no-show field in the supplied tables, so the Week 7 brief's attendance questions cannot be tested on this dataset",
+   "Severity": "Critical",
+   "Owner track": "Project Management / Data Analytics",
+   "Status": "OPEN",
+   "Action / resolution": "Confirm which dataset the pod uses for attendance; harness is ready to re-run"
+  },
+  {
+   "ID": "I9",
+   "Issue": "Only 5,000 of 60,000 transactions link to an appointment; 22% of patients appear; Follow-Up visits without earlier visits (88%, confirmed by Data Analytics: the Follow-Up label does not reflect history)",
+   "Severity": "High",
+   "Owner track": "Data Analytics / data owner",
+   "Status": "OPEN",
+   "Action / resolution": "Repair appointment keys; re-extract full history"
+  },
+  {
+   "ID": "I10",
+   "Issue": "Diagnosis is recorded at consultation, so a booking-time model cannot use it",
+   "Severity": "Medium",
+   "Owner track": "Data Science / ML Engineering",
+   "Status": "OPEN",
+   "Action / resolution": "Decide prediction time-point before Week 8 integration"
+  },
+  {
+   "ID": "I11",
+   "Issue": "Week 5 baseline model not available in the supplied files",
+   "Severity": "Low",
+   "Owner track": "Data Science",
+   "Status": "OPEN",
+   "Action / resolution": "Prevalence baseline and logistic regression used as reference points"
+  },
+  {
+   "ID": "I12",
+   "Issue": "Uneven flagging by age band (flag rate gap 41 pp, AC10 fails before and after) although accuracy is the same in every group",
+   "Severity": "Medium",
+   "Owner track": "Data Science",
+   "Status": "OPEN",
+   "Action / resolution": "Moot while the model is not deployed; re-run parity checks once a real signal exists"
+  }
+ ],
+ "decisions": [
+  {
+   "ID": "D1",
+   "Decision": "Acceptance criteria fixed before testing; test set locked and used once per model version",
+   "Reason": "Prevents tuning to the test data"
+  },
+  {
+   "ID": "D2",
+   "Decision": "Model chosen on training data only; simplest model within 1 SE of the best (D. Ridge logistic, 5 core features)",
+   "Reason": "Parsimony; no evidence of benefit from complexity"
+  },
+  {
+   "ID": "D3",
+   "Decision": "Remove FacilityID, DepartmentName, BMI_clean, DeptWorkloadIndex",
+   "Reason": "Unreliable links (T11a); no AUC loss (T11b)"
+  },
+  {
+   "ID": "D4",
+   "Decision": "Operating point = flag-rate budget (top 20%), reported with lift",
+   "Reason": "F1 threshold degenerates to flag-all when there is no signal"
+  },
+  {
+   "ID": "D5",
+   "Decision": "Do NOT release the model for any operational use; release only the tested interface and harness",
+   "Reason": "Gate FAIL on mandatory criteria"
+  },
+  {
+   "ID": "D6",
+   "Decision": "Do not search for a more 'successful' target after the scan; the Week 6 proxy stays the reference",
+   "Reason": "Avoid p-hacking: 9 targets scanned with Bonferroni intervals, none detected"
+  },
+  {
+   "ID": "D7",
+   "Decision": "Report the Data Analytics validation as a two-way cross-track test and the ML Engineering interface test as Data Science side only (no counterpart available)",
+   "Reason": "Only activities that actually happened are claimed"
+  }
+ ],
+ "week8": [
+  {
+   "ID": "W8-1",
+   "Action before / during Week 8": "Obtain Admissions / Referrals / Attendance outcome data and re-run notebook sections 2-5 unchanged",
+   "Owner": "Project Management / data owner",
+   "When": "Before final integration"
+  },
+  {
+   "ID": "W8-2",
+   "Action before / during Week 8": "ML Engineering (when assigned) runs hc_contract_tests.py inside the pipeline and returns the result; fix any mismatch",
+   "Owner": "ML Engineering / Project Management",
+   "When": "Early Week 8"
+  },
+  {
+   "ID": "W8-3",
+   "Action before / during Week 8": "Agree the prediction time-point (booking vs after consultation) and the allowed feature list",
+   "Owner": "Data Science + ML Engineering (once a counterpart is assigned)",
+   "When": "Early Week 8"
+  },
+  {
+   "ID": "W8-4",
+   "Action before / during Week 8": "Data Analytics confirms the follow-up/prior-visit finding and repairs appointment keys",
+   "Owner": "Data Analytics",
+   "When": "Week 8"
+  },
+  {
+   "ID": "W8-5",
+   "Action before / during Week 8": "Present the HealthConnect model as 'validated null result + reusable test harness', not as a prediction tool",
+   "Owner": "All tracks",
+   "When": "Final presentation"
+  },
+  {
+   "ID": "W8-6",
+   "Action before / during Week 8": "Add fairness checks by sex, age band and province once a signal exists",
+   "Owner": "Data Science",
+   "When": "After real data"
+  }
+ ],
+ "record": [
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Reproducibility",
+   "Test": "T1 re-run Week 6 CV protocol",
+   "Expected": "AUC 0.505; confusion [[221,4235],[21,523]]",
+   "Actual": "AUC 0.5014; confusion reproduced exactly",
+   "PassFail": "PASS",
+   "Issue": "None",
+   "Action": "None",
+   "Retest": "n/a",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Notebook s.2 T1"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Performance on unseen data",
+   "Test": "T2 locked 20% hold-out",
+   "Expected": "AUC >= 0.60, CI above 0.5",
+   "Actual": "AUC 0.479 (95% CI 0.424-0.534)",
+   "PassFail": "FAIL",
+   "Issue": "No discrimination on unseen data",
+   "Action": "Refined (R1-R3)",
+   "Retest": "AUC 0.467 (95% CI 0.410-0.522) -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Fig w7_fig01"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Stability",
+   "Test": "T3 10 repeated grouped CV",
+   "Expected": "90% of runs AUC>0.55",
+   "Actual": "0% of runs AUC>0.55; mean 0.504",
+   "PassFail": "FAIL",
+   "Issue": "Unstable and near chance",
+   "Action": "Refined",
+   "Retest": "0% of runs AUC>0.55; mean 0.486 -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Notebook T3"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Signal vs chance",
+   "Test": "T4 label permutation (100)",
+   "Expected": "p < 0.05",
+   "Actual": "p = 0.515",
+   "PassFail": "FAIL",
+   "Issue": "Observed AUC inside null distribution",
+   "Action": "Refined",
+   "Retest": "p = 0.723 -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Fig w7_fig01"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Over-fitting",
+   "Test": "T5 train vs validation AUC",
+   "Expected": "Gap <= 0.05",
+   "Actual": "train 0.747 - validation 0.502 = 0.244",
+   "PassFail": "FAIL",
+   "Issue": "Severe over-fitting (I1)",
+   "Action": "R2 regularised model",
+   "Retest": "train 0.534 - validation 0.488 = 0.046 -> PASS",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Fig w7_fig05"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Time validity",
+   "Test": "T6 train Jan-Aug, test Sep-Dec",
+   "Expected": "AUC >= 0.55",
+   "Actual": "AUC 0.467 (CI 0.427-0.513)",
+   "PassFail": "FAIL",
+   "Issue": "Below chance in the future period",
+   "Action": "Refined",
+   "Retest": "AUC 0.506 (CI 0.461-0.555) -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Notebook T6"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Calibration",
+   "Test": "T7 slope and Brier",
+   "Expected": "Slope 0.8-1.2",
+   "Actual": "slope 0.07 (CI -0.28-0.41); Brier 0.0975 vs prevalence 0.0970",
+   "PassFail": "FAIL",
+   "Issue": "Probabilities carry no information",
+   "Action": "Refined",
+   "Retest": "slope -0.40 (CI -1.17-0.37); Brier 0.0972 vs prevalence 0.0970 -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Fig w7_fig02"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Operating point",
+   "Test": "T8 policy comparison",
+   "Expected": "Sensible flag rate, lift > 1.3",
+   "Actual": "F1 threshold flags 95%, lift 1.01x; top-20% lift 1.08x",
+   "PassFail": "FAIL",
+   "Issue": "Degenerate threshold (I3)",
+   "Action": "R3 flag-rate budget",
+   "Retest": "top-20% lift 0.83x (hold-out) - policy now interpretable; still no value",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Fig w7_fig02"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Error patterns",
+   "Test": "T9 FP vs TN, FN vs TP at top-20%",
+   "Expected": "Identifiable, fixable error groups",
+   "Actual": "flagging driven by FacilityID, BMI_clean, Age (Holm p<0.001) but positive rate flagged 0.117 vs unflagged 0.107",
+   "PassFail": "FAIL",
+   "Issue": "Score follows noise (facility, BMI, age): flagged = unflagged in outcome",
+   "Action": "R1 removed facility/BMI/department",
+   "Retest": "Refined model has no facility/BMI input; still no outcome signal",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Notebook T9"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Segment parity",
+   "Test": "T10 sex/age/province/facility",
+   "Expected": "Gap <= 10 pp",
+   "Actual": "max recall gap 19.9 pp; max flag-rate gap 22.1 pp",
+   "PassFail": "FAIL",
+   "Issue": "None systematic; AUC ~0.5 everywhere",
+   "Action": "None",
+   "Retest": "max recall gap 37.3 pp; max flag-rate gap 40.8 pp -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Fig w7_fig03"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Feature validity",
+   "Test": "T11 audit, ablation, leakage",
+   "Expected": "All features reliable and informative",
+   "Actual": "4 unreliable; ablation deltas within noise; no leakage found; importance>2SD: 0/14",
+   "PassFail": "FAIL (I2)",
+   "Issue": "Unreliable features in model",
+   "Action": "R1 removed 4 features",
+   "Retest": "Ablation: no AUC loss; model simpler",
+   "CollaboratingTrack": "Data Analytics",
+   "Evidence": "Notebook T11"
+  },
+  {
+   "Component": "Test harness",
+   "Objective": "Can the harness detect signal?",
+   "Test": "T12 positive controls + target scan",
+   "Expected": "Controls recovered; other targets reveal any signal",
+   "Actual": "Controls recovered: True; detected non-control outcomes: ['Returning patient (PriorVisits>0)'] (returning-patient: month artifact, vanishes when month removed)",
+   "PassFail": "PASS",
+   "Issue": "No signal in the data (I6)",
+   "Action": "Escalated to PM / data owner",
+   "Retest": "n/a",
+   "CollaboratingTrack": "Project Management",
+   "Evidence": "Fig w7_fig04"
+  },
+  {
+   "Component": "Week 6 candidate (GB)",
+   "Objective": "Meaningful improvement over baseline",
+   "Test": "Paired bootstrap delta-AUC",
+   "Expected": "delta >= 0.05, CI > 0",
+   "Actual": "delta-AUC 0.002 (95% CI -0.032 to 0.035)",
+   "PassFail": "FAIL",
+   "Issue": "No improvement over prevalence baseline",
+   "Action": "Refined",
+   "Retest": "delta-AUC -0.018 (95% CI -0.053 to 0.013) -> FAIL",
+   "CollaboratingTrack": "Data Science",
+   "Evidence": "Notebook s.4"
+  },
+  {
+   "Component": "Model interface",
+   "Objective": "Safe hand-off to ML pipeline",
+   "Test": "C1-C15 contract tests",
+   "Expected": "15/15 pass",
+   "Actual": "10/15 pass",
+   "PassFail": "FAIL",
+   "Issue": "Silent failures (I5)",
+   "Action": "Validated scorer wrapper + schema",
+   "Retest": "15/15 pass; fresh-process exit code 0",
+   "CollaboratingTrack": "None available: Data Science side only",
+   "Evidence": "outputs_w7/handoff_ml_engineering; contract_tests_*.csv"
+  },
+  {
+   "Component": "Analytical findings",
+   "Objective": "Are the findings that drive modelling decisions correct?",
+   "Test": "Independent recomputation from raw files",
+   "Expected": "Week 6 values reproduced",
+   "Actual": "5 of 5 confirmed; 1 new finding",
+   "PassFail": "PASS",
+   "Issue": "New: Follow-Up visits without history",
+   "Action": "Reported to Data Analytics / PM",
+   "Retest": "Decisions D3 confirmed",
+   "CollaboratingTrack": "Data Analytics (Olabisi Amusan): validated both ways",
+   "Evidence": "Notebook s.7"
+  },
+  {
+   "Component": "Release gate",
+   "Objective": "Is the model suitable?",
+   "Test": "Gate on AC1-AC10",
+   "Expected": "All mandatory criteria pass",
+   "Actual": "As built: FAIL; refined: FAIL",
+   "PassFail": "FAIL",
+   "Issue": "Mandatory criteria not met",
+   "Action": "Not released for operational use (D5)",
+   "Retest": "Re-run when outcome data exist",
+   "CollaboratingTrack": "Project Management",
+   "Evidence": "Gate tables s.4-5"
+  }
+ ],
+ "figures": [
+  {
+   "file": "d:\\Analyst_lab\\Healthcare_Predictive_Analytics_and_Population_Health_Intelligence\\week7\\figures_w7\\w7_fig01_core_tests.png",
+   "title": "Core tests of the Week 6 candidate (T2-T4)",
+   "interpretation": "On a locked hold-out of 999 appointments the candidate scores AUC 0.479 (95% CI 0.424-0.534); across 10 repeated CV runs the AUC ranges 0.491-0.515, and the observed AUC sits inside the cloud of AUCs produced by shuffled labels (p = 0.51). The Week 6 result is reproducible, but it is a null result."
+  },
+  {
+   "file": "d:\\Analyst_lab\\Healthcare_Predictive_Analytics_and_Population_Health_Intelligence\\week7\\figures_w7\\w7_fig02_gains_calibration_policy.png",
+   "title": "Gains, calibration and operating policy (T6-T8)",
+   "interpretation": "Targeting by score captures positives at almost exactly the random-targeting rate (gain curve on the diagonal), predicted probabilities span only 0.04-0.28, and the Week 6 F1-maximising threshold flags 95% of appointments with lift 1.01x: an operating point that is indistinguishable from flagging everyone."
+  },
+  {
+   "file": "d:\\Analyst_lab\\Healthcare_Predictive_Analytics_and_Population_Health_Intelligence\\week7\\figures_w7\\w7_fig03_segments.png",
+   "title": "Segment performance of the candidate (T10)",
+   "interpretation": "AUC is near 0.5 in every segment (0.36-0.59); only 5 of 50 intervals exclude 0.5, about what chance alone gives. But who gets flagged is uneven: the flag rate ranges 14%-36% across age bands, because the score follows noise in facility, BMI and age. Recall tracks the flag rate and precision stays at prevalence in every group, so the unequal flagging buys no accuracy."
+  },
+  {
+   "file": "d:\\Analyst_lab\\Healthcare_Predictive_Analytics_and_Population_Health_Intelligence\\week7\\figures_w7\\w7_fig04_controls_importance.png",
+   "title": "Harness validity and feature importance (T11-T12)",
+   "interpretation": "Both positive controls are recovered (green bars), so the test method can detect signal when it exists. The Week 6 admission proxy and every clinical or financial outcome stay at AUC 0.50 within their intervals (blue). The one detected outcome (red), returning patient, is a counting artifact: prior visits can only grow as the year passes, so month predicts it; it disappears when month is removed. No feature in the candidate has importance beyond noise."
+  },
+  {
+   "file": "d:\\Analyst_lab\\Healthcare_Predictive_Analytics_and_Population_Health_Intelligence\\week7\\figures_w7\\w7_fig05_before_after.png",
+   "title": "Before and after refinement (R1-R4)",
+   "interpretation": "Refinement removed the over-fitting (train-validation gap 0.24 to 0.05) and the unreliable features, but it cannot create signal: hold-out AUC is 0.467, still at chance level (CI 0.410-0.522) and the permutation p-value is 0.72. The model is now honest rather than better."
+  }
+ ],
+ "env": {
+  "sklearn": "1.9.0",
+  "python": "3.14.6",
+  "seed": 42
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "model_name": "HealthConnect admission-proxy scorer (refined)",
+ "version": "w7-1.0",
+ "target": "HighAcuityEmergency (Emergency visit AND Severe diagnosis; proxy, no Admissions table)",
+ "numeric": {
+  "Age": {
+   "dtype": "number",
+   "min": 0.0,
+   "max": 110.0
+  },
+  "PriorVisits": {
+   "dtype": "number",
+   "min": 0.0,
+   "max": 50.0
+  },
+  "HasChronic": {
+   "dtype": "number",
+   "min": 0.0,
+   "max": 1.0
+  }
+ },
+ "categorical": {
+  "Gender": {
+   "dtype": "string",
+   "categories": [
+    "Female",
+    "Male"
+   ]
+  },
+  "Diagnosis": {
+   "dtype": "string",
+   "categories": [
+    "Diabetes",
+    "Gastritis",
+    "Hypertension",
+    "Malaria",
+    "Upper Respiratory Infection"
+   ]
+  }
+ },
+ "threshold_top20": 0.11704206961465975,
+ "sklearn_version": "1.9.0",
+ "python_version": "3.14.6",
+ "release_gate": {
+  "passed": false,
+  "failed_mandatory": [
+   "AC2",
+   "AC3",
+   "AC5",
+   "AC9"
+  ]
+ },
+ "training_rows": 5000,
+ "random_seed": 42
+}

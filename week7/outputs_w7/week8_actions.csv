@@ -1,0 +1,7 @@
+ID,Action before / during Week 8,Owner,When
+W8-1,Obtain Admissions / Referrals / Attendance outcome data and re-run notebook sections 2-5 unchanged,Project Management / data owner,Before final integration
+W8-2,ML Engineering (when assigned) runs hc_contract_tests.py inside the pipeline and returns the result; fix any mismatch,ML Engineering / Project Management,Early Week 8
+W8-3,Agree the prediction time-point (booking vs after consultation) and the allowed feature list,Data Science + ML Engineering (once a counterpart is assigned),Early Week 8
+W8-4,Data Analytics confirms the follow-up/prior-visit finding and repairs appointment keys,Data Analytics,Week 8
+W8-5,"Present the HealthConnect model as 'validated null result + reusable test harness', not as a prediction tool",All tracks,Final presentation
+W8-6,"Add fairness checks by sex, age band and province once a signal exists",Data Science,After real data

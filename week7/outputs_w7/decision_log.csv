@@ -1,0 +1,8 @@
+ID,Decision,Reason
+D1,Acceptance criteria fixed before testing; test set locked and used once per model version,Prevents tuning to the test data
+D2,"Model chosen on training data only; simplest model within 1 SE of the best (D. Ridge logistic, 5 core features)",Parsimony; no evidence of benefit from complexity
+D3,"Remove FacilityID, DepartmentName, BMI_clean, DeptWorkloadIndex",Unreliable links (T11a); no AUC loss (T11b)
+D4,"Operating point = flag-rate budget (top 20%), reported with lift",F1 threshold degenerates to flag-all when there is no signal
+D5,Do NOT release the model for any operational use; release only the tested interface and harness,Gate FAIL on mandatory criteria
+D6,Do not search for a more 'successful' target after the scan; the Week 6 proxy stays the reference,"Avoid p-hacking: 9 targets scanned with Bonferroni intervals, none detected"
+D7,Report the Data Analytics validation as a two-way cross-track test and the ML Engineering interface test as Data Science side only (no counterpart available),Only activities that actually happened are claimed

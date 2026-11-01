@@ -1,0 +1,16 @@
+ID,Scenario,Expected,Result,Detail
+C1,Valid batch of 5,"Scores in [0,1], no NaN",PASS,"5 rows, scores 0.104-0.124"
+C2,Single row,Scored,PASS,1 row
+C3,Missing numeric values,Scored (imputed),PASS,numeric NaN handled
+C4,Missing categorical value,"Scored, flagged",PASS,categorical NaN handled
+C5,Unseen category ('Zanzibar' in a categorical column),Scored AND visible in status,PASS,row status: SCORED_WITH_WARNINGS: Diagnosis unseen category 'Zanzibar'
+C6,Required column missing,Clear error naming the column,PASS,"SchemaError: Missing required column(s): ['Age']. Expected: ['Age', 'PriorVisits', 'HasChronic', 'Gender', 'Diagnosis']"
+C7,Extra unexpected column,"Ignored, scores unchanged",PASS,"extra column ignored, scores unchanged"
+C8,Columns in different order,Same scores,PASS,column order does not matter
+C9,Numbers sent as text ('45'),"Coerced, same scores",PASS,numeric strings coerced
+C10,Non-numeric value ('abc') in Age,"Bad row rejected, rest of batch scored",PASS,"row 1 rejected, rows 2-5 scored"
+C11,"Impossible values (Age 250, PriorVisits -3)","Bad rows rejected, rest scored",PASS,"Age=250 and PriorVisits=-3 rejected, rest scored"
+C12,"Wrong text case ('female','MALARIA')","Normalised, same scores",PASS,case differences normalised
+C13,Empty input,"Empty output, no crash",PASS,empty input returns empty output
+C14,Repeat call determinism,Identical output,PASS,identical output on repeat call
+C15,Duplicate row index,Scored,PASS,duplicate index handled

@@ -1,0 +1,13 @@
+ID,Issue,Severity,Owner track,Status,Action / resolution
+I1,Over-fitting in the Week 6 candidate (train AUC 0.75 vs validation 0.50),High,Data Science,MITIGATED,"Regularised model on reliable features (R1, R2): gap 0.05 (AC7 limit 0.05 still narrowly missed)"
+I2,"Unreliable features (facility/department 94.9% mismatch, BMI for minors) inside the model",High,Data Science / Data Analytics,RESOLVED,Removed; ablation shows no performance loss (T11b)
+I3,F1-maximising threshold flags 95% of appointments (lift 1.0x),Medium,Data Science,RESOLVED,Top-20% flag-rate budget with lift reporting (R3)
+I4,No release gate: a no-signal model could be deployed,High,Data Science / Project Management,RESOLVED,Executable gate AC1-AC10 (R4); result recorded in schema.json
+I5,"Silent failures at the model interface (impossible values, mis-cased text, whole-batch failures)",High,Data Science / ML Engineering,RESOLVED (DS side); no ML Engineering counterpart available,Scorer wrapper; contract tests 10/15 -> 15/15
+I6,No predictive signal in any available feature or alternative target (data looks simulated),Critical,Data Analytics / Project Management / data owner,OPEN,Escalated: needs real outcome data; cannot be fixed by modelling
+I7,No Admissions table: admission is modelled through a proxy (Emergency & Severe),Critical,Project Management / data owner,OPEN,"Obtain Admissions, Referrals, Laboratory and Prescriptions tables"
+I8,"No attendance / no-show field in the supplied tables, so the Week 7 brief's attendance questions cannot be tested on this dataset",Critical,Project Management / Data Analytics,OPEN,Confirm which dataset the pod uses for attendance; harness is ready to re-run
+I9,"Only 5,000 of 60,000 transactions link to an appointment; 22% of patients appear; Follow-Up visits without earlier visits (88%, confirmed by Data Analytics: the Follow-Up label does not reflect history)",High,Data Analytics / data owner,OPEN,Repair appointment keys; re-extract full history
+I10,"Diagnosis is recorded at consultation, so a booking-time model cannot use it",Medium,Data Science / ML Engineering,OPEN,Decide prediction time-point before Week 8 integration
+I11,Week 5 baseline model not available in the supplied files,Low,Data Science,OPEN,Prevalence baseline and logistic regression used as reference points
+I12,"Uneven flagging by age band (flag rate gap 41 pp, AC10 fails before and after) although accuracy is the same in every group",Medium,Data Science,OPEN,Moot while the model is not deployed; re-run parity checks once a real signal exists

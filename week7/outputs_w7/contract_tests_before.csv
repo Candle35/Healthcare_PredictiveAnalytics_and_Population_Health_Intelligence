@@ -1,0 +1,17 @@
+ID,Scenario,Expected,Result,Detail
+C1,Valid batch of 5,"Scores in [0,1], no NaN",PASS,"5 rows, scores 0.091-0.108"
+C2,Single row,Scored,PASS,1 row
+C3,Missing numeric values,Scored (imputed),PASS,numeric NaN handled
+C4,Missing categorical value,"Scored, flagged",PASS,categorical NaN handled
+C5,Unseen category ('Zanzibar' in a categorical column),Scored AND visible in status,FAIL,row status: SCORED
+C6,Required column missing,Clear error naming the column,PASS,ValueError: columns are missing: {'Age'}
+C7,Extra unexpected column,"Ignored, scores unchanged",PASS,"extra column ignored, scores unchanged"
+C8,Columns in different order,Same scores,PASS,column order does not matter
+C9,Numbers sent as text ('45'),"Coerced, same scores",PASS,numeric strings coerced
+C10,Non-numeric value ('abc') in Age,"Bad row rejected, rest of batch scored",FAIL,"EXCEPTION ValueError: Cannot use median strategy with non-numeric data:
+could not convert string to float: 'abc'"
+C11,"Impossible values (Age 250, PriorVisits -3)","Bad rows rejected, rest scored",FAIL,"Age=250 and PriorVisits=-3 rejected, rest scored"
+C12,"Wrong text case ('female','MALARIA')","Normalised, same scores",FAIL,case differences normalised
+C13,Empty input,"Empty output, no crash",FAIL,"EXCEPTION ValueError: Found array with 0 sample(s) (shape=(0, 8)) while a minimum of 1 is required by SimpleImputer."
+C14,Repeat call determinism,Identical output,PASS,identical output on repeat call
+C15,Duplicate row index,Scored,PASS,duplicate index handled
